@@ -1,0 +1,1 @@
+{"virtualbox":{"/home/vagrant/timetable":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/timetable","hostpath":"C:/Users/owner/Documents/TimeTable","disabled":false,"__vagrantfile":true},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/Users/owner/Documents/TimeTable","disabled":false,"__vagrantfile":true}}}
