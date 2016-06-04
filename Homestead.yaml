@@ -1,0 +1,36 @@
+---
+ip: "192.168.10.20"
+memory: 2048
+cpus: 1
+hostname: timetable
+name: timetable
+provider: virtualbox
+
+authorize: C:/Users/owner/.ssh\id_rsa.pub
+
+keys:
+    - C:/Users/owner/.ssh/id_rsa.ppk
+
+folders:
+    - map: "C:/Users/owner/Documents/TimeTable"
+      to: "/home/vagrant/timetable"
+
+sites:
+    - map: TimeTable.app
+      to: "/home/vagrant/timetable/public"
+
+databases:
+    - timeTable
+
+# blackfire:
+#     - id: foo
+#       token: bar
+#       client-id: foo
+#       client-token: bar
+
+# ports:
+#     - send: 50000
+#       to: 5000
+#     - send: 7777
+#       to: 777
+#       protocol: udp
