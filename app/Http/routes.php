@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// app/Http/Controllers/deviceController に飛ぶ
+Route::get('/', 'deviceController@selectDvice');
