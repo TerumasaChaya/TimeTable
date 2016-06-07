@@ -16,6 +16,8 @@ class CreateSubjectAreaTable extends Migration
             
             ///P_科目分野ID
             $table->increments('id');
+            //F_科目分野ID
+            $table->integer('area_Id');
             //科目分野名
             $table->string('subjectArea');
             
