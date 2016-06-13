@@ -12,3 +12,7 @@
 */
 
 Route::get('/', 'ExcelController@getFile');
+
+// app/Http/Controllers/deviceController に飛ぶ
+Route::get('/', 'deviceController@selectDevice');
+
