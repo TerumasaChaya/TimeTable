@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Database\Seeder;
 
-class TeacherTableSeeder extends Seeder
+class ClassDayTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

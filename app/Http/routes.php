@@ -12,4 +12,5 @@
 */
 
 // app/Http/Controllers/deviceController に飛ぶ
-Route::get('/', 'deviceController@selectDvice');
+Route::get('/', 'deviceController@selectDevice');
+

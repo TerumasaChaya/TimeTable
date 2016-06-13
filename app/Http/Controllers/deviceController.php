@@ -7,11 +7,9 @@ use App\Http\Controllers\Mobile_Detect;
 
 class deviceController extends Controller {
 
-    public function selectDvice(){
+    public function selectDevice(){
 
         /*phpでスマホ,PCの判定*/
-
-
         //参照url https://syncer.jp/how-to-use-mobile-detect
 
         // インスタンスの作成

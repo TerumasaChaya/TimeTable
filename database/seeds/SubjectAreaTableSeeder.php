@@ -14,56 +14,56 @@ class SubjectAreaTableSeeder extends Seeder
     {
         DB::table('subjectArea')->insert([
             'id' => 1,
-            'areaid' => 1,
-            'Area' => '情報処理'
-        ]);
-
-        DB::table('subjectArea')->insert([
-            'id' => 1,
-            'areaid' => 2,
-            'Area' => 'ネットワーク'
-        ]);
-
-        DB::table('subjectArea')->insert([
-            'id' => 1,
-            'areaid' => 3,
-            'Area' => 'DB'
+            'area_id' => 1,
+            'subjectArea' => '情報処理'
         ]);
 
         DB::table('subjectArea')->insert([
             'id' => 2,
-            'areaid' => 1,
-            'Area' => 'ゲームCG'
-        ]);
-
-        DB::table('subjectArea')->insert([
-            'id' => 2,
-            'areaid' => 2,
-            'Area' => 'ゲームプログラミング（基礎）'
-        ]);
-
-        DB::table('subjectArea')->insert([
-            'id' => 2,
-            'areaid' => 3,
-            'Area' => 'ゲーム企画（制作進行）'
+            'area_id' => 2,
+            'subjectArea' => 'ネットワーク'
         ]);
 
         DB::table('subjectArea')->insert([
             'id' => 3,
-            'areaid' => 1,
-            'Area' => 'CG'
+            'area_id' => 3,
+            'subjectArea' => 'DB'
         ]);
 
         DB::table('subjectArea')->insert([
-            'id' => 3,
-            'areaid' => 2,
-            'Area' => 'アニメーション制作'
+            'id' => 4,
+            'area_id' => 1,
+            'subjectArea' => 'ゲームCG'
         ]);
 
         DB::table('subjectArea')->insert([
-            'id' => 3,
-            'areaid' => 3,
-            'Area' => 'クリエイター作品制作'
+            'id' => 5,
+            'area_id' => 2,
+            'subjectArea' => 'ゲームプログラミング（基礎）'
+        ]);
+
+        DB::table('subjectArea')->insert([
+            'id' => 6,
+            'area_id' => 3,
+            'subjectArea' => 'ゲーム企画（制作進行）'
+        ]);
+
+        DB::table('subjectArea')->insert([
+            'id' => 7,
+            'area_id' => 1,
+            'subjectArea' => 'CG'
+        ]);
+
+        DB::table('subjectArea')->insert([
+            'id' => 8,
+            'area_id' => 2,
+            'subjectArea' => 'アニメーション制作'
+        ]);
+
+        DB::table('subjectArea')->insert([
+            'id' => 9,
+            'area_id' => 3,
+            'subjectArea' => 'クリエイター作品制作'
         ]);
 
     }
