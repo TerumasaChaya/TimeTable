@@ -11,6 +11,10 @@
 |
 */
 
+<<<<<<< HEAD
 // app/Http/Controllers/deviceController に飛ぶ
 Route::get('/', 'deviceController@selectDevice');
 
+=======
+Route::get('/', 'ExcelController@getFile');
+>>>>>>> ChayaTimeTable/master
