@@ -11,10 +11,17 @@
 |
 */
 
-<<<<<<< HEAD
+Route::get('/excel', 'ExcelController@getFile');
+
 // app/Http/Controllers/deviceController に飛ぶ
 Route::get('/', 'deviceController@selectDevice');
 
-=======
-Route::get('/', 'ExcelController@getFile');
->>>>>>> ChayaTimeTable/master
+//ログインテスト
+Route::group(['prefix' => 'login'], function(){
+    Route::get('user', function () {
+        return view('login-user');
+    });
+    Route::get('admin', function () {
+        return view('login-admin');
+    });
+});
