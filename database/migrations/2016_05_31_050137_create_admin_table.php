@@ -20,6 +20,8 @@ class CreateAdminTable extends Migration
             $table->string('adminName');
             //F_アカウントID
             $table->integer('account_Id');
+            //振り分けフラグ
+            $table->integer('flag');
             
             $table->timestamps();
         });
