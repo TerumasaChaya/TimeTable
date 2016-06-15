@@ -25,3 +25,16 @@ Route::group(['prefix' => 'login'], function(){
         return view('login-admin');
     });
 });
+
+//テスト用ルート
+Route::get('admin/main', function () {
+    return view('admin.main');
+});
+
+Route::get('user/main', function () {
+    return view('user.main');
+});
+
+Route::get('user/week', function () {
+    return view('user.week');
+});
