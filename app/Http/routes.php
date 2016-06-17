@@ -26,15 +26,28 @@ Route::group(['prefix' => 'login'], function(){
     });
 });
 
-//テスト用ルート
-Route::get('admin/main', function () {
-    return view('admin.main');
+//ユーザーテスト
+Route::group(['prefix' => 'user'], function(){
+
+    Route::group(['prefix' => 'attendance'], function(){
+        Route::get('/', 'attendanceController@index');
+        Route::post('/show', 'attendanceController@show');
+    });
+
+    Route::get('week', function () {
+        return view('user.week');
+    });
+
+    Route::get('main', function () {
+        return view('user.main');
+    });
+
 });
 
-Route::get('user/main', function () {
-    return view('user.main');
-});
+//アドミンテスト
+Route::group(['prefix' => 'admin'], function(){
 
-Route::get('user/week', function () {
-    return view('user.week');
+    Route::get('main', function () {
+        return view('admin.main');
+    });
 });
