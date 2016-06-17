@@ -105,11 +105,11 @@
                 </li>
 
                 <li>
-                    <a href="Animation.html">
+                    <a href="/user/attendance">
                         <i class="fa fa-slack fa-fw">
                             <div class="icon-bg bg-green"></div>
                         </i>
-                        <span class="menu-title">ここにページのタイトルが入る</span>
+                        <span class="menu-title">出席照会</span>
                     </a>
                 </li>
             </ul>
