@@ -43,6 +43,11 @@ class AttendanceController extends Controller
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $URL1);
         curl_setopt($ch, CURLOPT_POST, TRUE);
+        //プロキシ設定(実行サーバー環境しだいで不要)
+        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
+        curl_setopt($ch, CURLOPT_PROXY, 'http://proxy.ecc.ac.jp:8080');
+        curl_setopt($ch, CURLOPT_PROXYPORT, '8080');
+        //プロキシ設定　ここまで
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
@@ -56,6 +61,11 @@ class AttendanceController extends Controller
         $URL2 = "http://school4.ecc.ac.jp/EccStdWeb/ST0500/ST0500_01.aspx";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $URL2);
+        //プロキシ設定(実行サーバー環境しだいで不要)
+        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, 1);
+        curl_setopt($ch, CURLOPT_PROXY, 'http://proxy.ecc.ac.jp:8080');
+        curl_setopt($ch, CURLOPT_PROXYPORT, '8080');
+        //プロキシ設定　ここまで
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_COOKIEJAR, $coolie);
