@@ -11,6 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['middleware' => ['web']], function () {
+
+    Route::get('/admin/login','AdminAuthController@showLoginForm');
+    Route::post('/admin/login','AdminAuthController@login');
+
+    Route::get('/admin', 'AdminHomeController@index');
+    Route::get('/admin/home','AdminHomeController@index');
+
+    Route::get('admin/register','AdminAuthController@showRegistrationForm');
+    ROute::post('admin/register','AdminAuthController@register');
+
+
+    Route::get('/admin/logout','AdminAuthController@logout');
+
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
+
 });
+
+

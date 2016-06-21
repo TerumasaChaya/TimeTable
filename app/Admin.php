@@ -2,17 +2,16 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Admin extends Authenticatable
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    //
+    protected $guard = "admin";
+
     protected $fillable = [
-        'name', 'email', 'password','class',
+        'name', 'email', 'password',
     ];
 
     /**
