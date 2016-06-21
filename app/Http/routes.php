@@ -11,9 +11,6 @@
 |
 */
 
-
-Route::group(['middleware' => ['web']], function () {
-
     Route::get('/admin/login','AdminAuthController@showLoginForm');
     Route::post('/admin/login','AdminAuthController@login');
 
@@ -29,7 +26,5 @@ Route::group(['middleware' => ['web']], function () {
     Route::auth();
 
     Route::get('/home', 'HomeController@index');
-
-});
 
 
