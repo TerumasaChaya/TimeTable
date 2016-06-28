@@ -17,8 +17,10 @@ class CreateRepTeacherTable extends Migration
             $table->increments('id');
             //F_教師名ID
             $table->integer('teacher_Id');
-            //担任フラグ
-            $table->string('hrTeacherFlag');
+            //F_科目ID
+            $table->integer('subject_Id');
+            //役割
+            $table->string('role');
             
             $table->timestamps();
         });
