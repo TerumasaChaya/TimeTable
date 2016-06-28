@@ -11,7 +11,7 @@ class subject_table extends Model
     //primaryKeyの変更
     protected $primaryKey = "id";
     protected $fillable = [
-        "id","subject","area_Id","usePC","useHard","part","credits","role","firstLecture","firstExercises","secondLecture","secondExercises","subjectOverview","subject_Id","room_Id","repTeacher_Id"
+        "id","subject","area_Id","usePC","useHard","part","credits","role","firstLecture","firstExercises","secondLecture","secondExercises","subjectOverview"
     ];
 
     //hasMany設定
@@ -30,8 +30,10 @@ class subject_table extends Model
         return $this->belongsTo('App\area_table');
 
     }
+
     public  function  classDay()
     {
         return $this->hasMany('App\classDay_table','subject_Id');
     }
+
 }

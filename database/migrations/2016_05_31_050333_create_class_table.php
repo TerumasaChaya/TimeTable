@@ -16,6 +16,8 @@ class CreateClassTable extends Migration
 
             //P_クラスID
             $table->increments('id');
+            //F_教師ID
+            $table->integer('teacher_Id');
             //クラス名
             $table->string('className');
             //学年
