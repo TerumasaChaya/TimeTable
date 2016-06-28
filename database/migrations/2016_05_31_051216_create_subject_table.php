@@ -28,8 +28,6 @@ class CreateSubjectTable extends Migration
             $table->string('part');
             //単位
             $table->integer('credits');
-            //役割
-            $table->string('role');
             //前期講義数
             $table->integer('firstLecture');
             //前期演習数
@@ -40,12 +38,6 @@ class CreateSubjectTable extends Migration
             $table->integer('secondExercises');
             //科目概要
             $table->string('subjectOverview');
-            //F_科目分野ID
-            $table->integer('subject_Id');
-            //F_教室ID
-            $table->integer('room_Id');
-            //F_担当教師ID
-            $table->integer('repTeacher_Id');
             
             $table->timestamps();
         });
