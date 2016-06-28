@@ -16,14 +16,16 @@ class CreateClassDayTable extends Migration
 
             //P_クラス曜日ID
             $table->increments('id');
+            //F_科目ID
+            $table->integer('subject_Id');
+            //F_教室ID
+            $table->integer('room_Id');
             //F_クラスID
             $table->integer('class_Id');
             //曜日
             $table->string('day');
             //時限
             $table->integer('period');
-            //F_科目テーブルID
-            $table->integer('subject_Id');
             
             $table->timestamps();
         });
