@@ -15,7 +15,7 @@ class classDay_table extends Model
     //hasMany設定
     public function subject()
     {
-        return $this->belongsTo('App\subject_table');
+        return $this->belongsTo('App\subject_table','subject_Id');
 
     }
     public function class_()

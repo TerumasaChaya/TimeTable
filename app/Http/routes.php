@@ -16,6 +16,10 @@ Route::get('/excel', 'ExcelController@getFile');
 // app/Http/Controllers/deviceController に飛ぶ
 Route::get('/', 'deviceController@selectDevice');
 
+//
+Route::get('/test','WeekDay@getDay');
+
+
 //ログインテスト
 Route::group(['prefix' => 'login'], function(){
     Route::get('user', function () {
