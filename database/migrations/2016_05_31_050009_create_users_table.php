@@ -14,15 +14,19 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
 
-            //P_ユーザーID
             $table->increments('id');
             //ユーザー名
-            $table->string('userName');
-            //F_アカウントID
-            $table->integer('account_Id');
+            $table->string('name');
+
+            $table->string('email');
+
+            $table->string('password');
+
             //F_クラスID
-            $table->integer('class_Id');
-            
+            $table->string('class');
+
+            $table->rememberToken();
+
             $table->timestamps();
         });
     }

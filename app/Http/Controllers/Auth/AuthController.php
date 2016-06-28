@@ -28,7 +28,8 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
+    protected $loginView = 'auth.login-new';
 
     /**
      * Create a new authentication controller instance.
@@ -38,6 +39,15 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
+    }
+
+    public function showLoginForm()
+    {
+        if (view()->exists('authenticate')) {
+            return view('authenticate');
+        }
+
+        return view('auth.login-new');
     }
 
     /**
@@ -52,6 +62,7 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'class' => 'required|max:10',
         ]);
     }
 
@@ -67,6 +78,7 @@ class AuthController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'class' => $data['class'],
         ]);
     }
 }

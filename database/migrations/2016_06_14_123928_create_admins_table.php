@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAccountTable extends Migration
+class CreateAdminsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,16 +12,19 @@ class CreateAccountTable extends Migration
      */
     public function up()
     {
-        Schema::create('account', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
 
-            //P_アカウントID
+            //P_ユーザーID
             $table->increments('id');
-            //メールアドレス
-            $table->string('email')->unique();
-            //パスワード
+            //ユーザー名
+            $table->string('name');
+
+            $table->string('email');
+
             $table->string('password');
+
             $table->rememberToken();
-            
+
             $table->timestamps();
         });
     }
@@ -33,6 +36,7 @@ class CreateAccountTable extends Migration
      */
     public function down()
     {
-        Schema::drop('account');
+        //
+        Schema::drop('admins');
     }
 }
