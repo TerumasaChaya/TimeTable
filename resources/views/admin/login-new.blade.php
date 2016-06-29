@@ -18,7 +18,9 @@
     <div class="page-form">
         <div class="panel panel-blue">
             <div class="panel-body pan">
-                <form action="#" class="form-horizontal">
+                <form action="{{ url('/admin/login') }}" class="form-horizontal" method="POST" role="form">
+                    {{ csrf_field() }}
+
                 <div class="form-body pal">
                     <div class="col-md-12 text-center">
                         <h1 style="margin-top: -90px; font-size: 48px;">
@@ -31,29 +33,42 @@
                         </div>
                         <div class="col-md-9 text-center">
                             <h1>
-                                ログイン画面</h1>
+                                管理者ログイン画面</h1>
                             <br />
                            
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputName" class="col-md-3 control-label">
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <label for="email" class="col-md-3 control-label">
                             メールアドレス:</label>
                         <div class="col-md-9">
                             <div class="input-icon right">
                                 <i class="fa fa-user"></i>
-                                <input id="inputName" type="text" placeholder="" class="form-control" /></div>
+                                <input id="email" type="email" placeholder="" class="form-control" name="email" value="{{ old('email') }}"/></div>
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                            @endif
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputPassword" class="col-md-3 control-label">
+
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <label for="password" class="col-md-3 control-label">
                             パスワード:</label>
                         <div class="col-md-9">
                             <div class="input-icon right">
                                 <i class="fa fa-lock"></i>
-                                <input id="inputPassword" type="text" placeholder="" class="form-control" /></div>
+                                <input id="password" type="password" placeholder="" class="form-control" name="password" /></div>
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                            @endif
                         </div>
                     </div>
+
+
                     <div class="rememberpass" style="padding-left:280px;">
                 <input type="checkbox" name="rememberusername" id="rememberusername" value="1" checked="checked" />
                   <label for="rememberusername">ユーザ名を記憶する</label>
@@ -62,10 +77,14 @@
                         <div class="col-lg-12" align="right">
                             <div class="form-group mbn">
                                 <div class="col-lg-3">
-                                    <a href="login-user.blade.php" class="btn btn-default">アカウント作成</a>&nbsp;&nbsp;
+
                                 </div>
                                 <div class="col-lg-9">
-                                    <a href="login-user.blade.php" class="btn btn-default">ログイン</a>&nbsp;&nbsp;
+                                    <!--<a href="../user/login.blade.php" class="btn btn-default">ログイン</a>&nbsp;&nbsp; -->
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fa fa-btn fa-sign-in"></i> Login
+                                    </button>
+
                                     <button type="submit" class="btn btn-default">キャンセル
                                         </button>
                                 </div>
@@ -78,7 +97,7 @@
         </div>
         <div class="col-lg-12 text-center">
             <p>
-                <a href="login-user.blade.php">管理者の方はこちら</a>&nbsp;&nbsp;
+                <a href="../user/login.blade.php">一般ユーザーの方はこちら</a>&nbsp;&nbsp;
             </p>
         </div>
     </div>
