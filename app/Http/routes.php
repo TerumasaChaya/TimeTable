@@ -17,8 +17,9 @@ Route::get('/excel', 'ExcelController@getFile');
 Route::get('/', 'deviceController@selectDevice');
 
 //
-Route::get('/test','WeekDay@getDay');
+Route::get('/test','DataBaseControllers\WeekDay@getDay');
 
+Route::get('/test2','DataBaseControllers\TestDataBaseController@test');
 
 //ログインテスト
 Route::group(['prefix' => 'login'], function(){

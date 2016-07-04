@@ -6,7 +6,7 @@
  * Time: 10:14
  */
 
-namespace app\Http\Controllers;
+namespace App\Http\Controllers\DataBaseControllers;
 
 
 use App\Http\Controllers\Controller;
@@ -36,9 +36,9 @@ class WeekDay extends Controller
             ->get();
 
 
-//        var_dump($w);
-//        var_dump($classDay->subject->subject);
-        return view('pc',['classDay' => $classDay]);
+//        var_dump($w)
+        var_dump($classDay->subject->subject);;
+//        return view('pc',['classDay' => $classDay]);
     }
 
 }
