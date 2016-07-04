@@ -30,7 +30,7 @@
                     <li class="dropdown topbar-user">
                         <a data-hover="dropdown" href="#" class="dropdown-toggle">
                             <img src="/design/images/avatar/human_48.jpg" alt="" class="img-responsive img-circle"/>&nbsp;
-                            <span class="hidden-xs">ここにユーザー名が入る</span>&nbsp;
+                            <span class="hidden-xs">{{ Auth::user()->name }}</span>&nbsp;
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-user pull-right">
@@ -68,7 +68,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="Login.html">
+                                <a href="{{ url('/logout') }}">
                                     <i class="fa fa-key"></i>
                                     Log Out
                                 </a>
