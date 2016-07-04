@@ -24,8 +24,28 @@ Route::group(['middleware' => 'guest:admin'], function () { //←このグルー
 });
 
 Route::group(['middleware' => 'auth:admin'], function () { //←このグループで括る
+
+
     Route::get('/admin', 'AdminHomeController@index');
     Route::get('/admin/home','AdminHomeController@index');
+
+
+    //アドミンテスト
+    Route::group(['prefix' => 'admin'], function(){
+
+
+
+        Route::get('main', function () {
+            return view('admin.main');
+        });
+
+        Route::get('excel', function () {
+            return view('admin.excel');
+        });
+
+        Route::post('/upload', 'ExcelController@upFile');
+
+    });
 
 });
 Route::get('/admin/logout','AdminAuthController@logout');
@@ -62,17 +82,3 @@ Route::group(['prefix' => 'user'], function(){
 });
 */
 
-//アドミンテスト
-Route::group(['prefix' => 'admin'], function(){
-
-    Route::get('main', function () {
-        return view('admin.main');
-    });
-
-    Route::get('excel', function () {
-        return view('admin.excel');
-    });
-
-    Route::post('/upload', 'ExcelController@upFile');
-
-});
