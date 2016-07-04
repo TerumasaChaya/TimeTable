@@ -105,13 +105,14 @@
                 </li>
 
                 <li>
-                    <a href="Animation.html">
+                    <a href="/admin/excel">
                         <i class="fa fa-slack fa-fw">
                             <div class="icon-bg bg-green"></div>
                         </i>
-                        <span class="menu-title">ここにページのタイトルが入る</span>
+                        <span class="menu-title">アップロード画面</span>
                     </a>
                 </li>
+
             </ul>
         </div>
     </nav>

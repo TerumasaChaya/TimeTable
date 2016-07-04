@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/excel', 'ExcelController@getFile');
+//Route::get('/excel', 'ExcelController@getFile');
 
 // app/Http/Controllers/deviceController に飛ぶ
 Route::get('/', 'deviceController@selectDevice');
@@ -50,4 +50,12 @@ Route::group(['prefix' => 'admin'], function(){
     Route::get('main', function () {
         return view('admin.main');
     });
+
+    Route::get('excel', function () {
+        return view('admin.excel');
+    });
+
+    Route::post('/upload', 'ExcelController@upFile');
+
 });
+

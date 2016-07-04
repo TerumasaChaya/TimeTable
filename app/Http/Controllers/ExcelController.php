@@ -15,27 +15,65 @@ use App\subject_table;
 use App\repTeacher_table;
 use App\Teacher_table;
 use Illuminate\Support\Facades\Input;
+use Request;
 
 class ExcelController extends Controller
 {
+    protected $excelData;
+
+    public function upFile()
+    {
+        //既存Excelファイル削除
+
+        $dir = public_path(). "/xlsData/";
+
+        if ( $dirHandle = opendir ($dir)) {
+            while ( false !== ( $fileName = readdir ( $dirHandle ) ) ) {
+                if ( $fileName != "." && $fileName != ".." ) {
+                    //var_dump("deleted");
+                    unlink ( $dir.$fileName );
+                }
+            }
+            closedir ( $dirHandle );
+        }
+
+        //public\xlsData にアップされたExcelファイルを保存
+        $file = Request::file('upfile');
+
+        $name = $file->getClientOriginalName();
+
+        $move = $file->move($dir, $name);
+
+        $this->excelData = "xlsData/".$name;
+
+        if($move){
+            //return "uploaded";
+            $this->getFile();
+        }else{
+            return "error";
+        }
+        return redirect('/admin/main');
+    }
 
     public function getFile()
     {
         ini_set('max_execution_time', 30000);
 
-        $this->college();
-        $this->teacher();
-        $this->class_a();
-        $this->room();
-        $this->area();
-        $this->subject();
-        $this->repteacher();
-        $this->classDay();
+        //$this->excelData = $this->excelData;
+
+        //$this->college();
+//        $this->teacher();
+//        $this->class_a();
+//        $this->room();
+//        $this->area();
+//        $this->subject();
+//        $this->repteacher();
+//        $this->classDay();
     }
     //所属カレッジ
     private function college(){
-        $fileName = public_path() . "/xlsData/2016前期時間割.xlsx";
-        Excel::load($fileName, function ($reader) {
+
+        Excel::load($this->excelData, function ($reader) {
 
             //------------テーブル挿入テンプレート----------------------------------------------------------------------
             //所属カレッジテーブル作成
@@ -90,8 +128,7 @@ class ExcelController extends Controller
 
     //教師
     private function teacher(){
-        $fileName = public_path() . "/xlsData/2016前期時間割.xlsx";
-        Excel::load($fileName, function ($reader) {
+        Excel::load($this->excelData, function ($reader) {
 
             //教師テーブル作成
             //教員一覧テーブルの読み込み
@@ -154,8 +191,7 @@ class ExcelController extends Controller
 
     //担当教師
     private function repteacher(){
-        $fileName = public_path() . "/xlsData/2016前期時間割.xlsx";
-        Excel::load($fileName, function ($reader) {
+        Excel::load($this->excelData, function ($reader) {
 
             //担当教師テーブル作成
             //元データシートの読み込み
@@ -232,8 +268,7 @@ class ExcelController extends Controller
 
     //クラス
     private function class_a(){
-        $fileName = public_path() . "/xlsData/2016前期時間割.xlsx";
-        Excel::load($fileName, function ($reader) {
+        Excel::load($this->excelData, function ($reader) {
 
             //クラステーブル作成
             $reader->setActiveSheetIndex(14);
@@ -378,8 +413,7 @@ class ExcelController extends Controller
 
     //教室
     private function room(){
-        $fileName = public_path() . "/xlsData/2016前期時間割.xlsx";
-        Excel::load($fileName, function ($reader) {
+        Excel::load($this->excelData, function ($reader) {
 
             //教室テーブル作成
             $reader->setActiveSheetIndex(17);
@@ -486,8 +520,7 @@ class ExcelController extends Controller
 
     //分野
     private function area(){
-        $fileName = public_path() . "/xlsData/2016前期時間割.xlsx";
-        Excel::load($fileName, function ($reader) {
+        Excel::load($this->excelData, function ($reader) {
 
             //分野テーブル
             $reader->setActiveSheetIndex(15);
@@ -522,8 +555,7 @@ class ExcelController extends Controller
 
     //科目
     private function subject(){
-        $fileName = public_path() . "/xlsData/2016前期時間割.xlsx";
-        Excel::load($fileName, function ($reader) {
+        Excel::load($this->excelData, function ($reader) {
 
             //科目テーブル作成
             $reader->setActiveSheetIndex(15);
@@ -767,8 +799,7 @@ class ExcelController extends Controller
 
     //クラス曜日
     private function classDay(){
-        $fileName = public_path() . "/xlsData/2016前期時間割.xlsx";
-        Excel::load($fileName, function ($reader) {
+        Excel::load($this->excelData, function ($reader) {
 
             //科目テーブル作成
             $reader->setActiveSheetIndex(1);
