@@ -18,7 +18,7 @@
     <div class="page-form">
         <div class="panel panel-blue">
             <div class="panel-body pan">
-                <form action="#" class="form-horizontal">
+                <form action="/login" class="form-horizontal">
                 <div class="form-body pal">
                     <div class="col-md-12 text-center">
                         <h1 style="margin-top: -90px; font-size: 48px;">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="col-md-9 text-center">
                             <h1>
-                                管理者ログイン画面</h1>
+                                ログイン画面</h1>
                             <br />
                            
                         </div>
@@ -62,10 +62,10 @@
                         <div class="col-lg-12" align="right">
                             <div class="form-group mbn">
                                 <div class="col-lg-3">
-
+                                    <a href="login.blade.php" class="btn btn-default">アカウント作成</a>&nbsp;&nbsp;
                                 </div>
                                 <div class="col-lg-9">
-                                    <a href="login-user.blade.php" class="btn btn-default">ログイン</a>&nbsp;&nbsp;
+                                    <a href="login.blade.php" class="btn btn-default">ログイン</a>&nbsp;&nbsp;
                                     <button type="submit" class="btn btn-default">キャンセル
                                         </button>
                                 </div>
@@ -78,7 +78,7 @@
         </div>
         <div class="col-lg-12 text-center">
             <p>
-                <a href="login-user.blade.php">一般ユーザーの方はこちら</a>&nbsp;&nbsp;
+                <a href="login.blade.php">管理者の方はこちら</a>&nbsp;&nbsp;
             </p>
         </div>
     </div>
