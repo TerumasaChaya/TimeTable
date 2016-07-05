@@ -56,31 +56,18 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="active">active</td>
 
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td class="active">active</td>
+                                            @foreach($weekDay as $week)
+                                                <tr>
+                                                    <td>
+                                                       {{$week->period}}
+                                                    </td>
+                                                    <td>
+                                                        {{$week->subject->subject}}
+                                                    </td>
+                                                </tr>
+                                            @endforeach
 
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td class="active">active</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td class="active">active</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td class="active">active</td>
-
-                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>

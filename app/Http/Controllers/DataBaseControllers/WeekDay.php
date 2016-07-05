@@ -31,14 +31,17 @@ class WeekDay extends Controller
         $classId = 1;
 
         //classDay_tableのクラスID、曜日が合致した行をすべて取得
-        $classDay = classDay_table::where('class_Id','=',$classId)
+        $weekDay = classDay_table::distinct()
+            ->where('class_Id','=',$classId)
             ->where('day','=', $w)
+            ->groupBy('subject_Id')
+            ->orderBy('period', 'ASC')
+            ->distinct()
             ->get();
 
-
 //        var_dump($w)
-        var_dump($classDay->subject->subject);;
-//        return view('pc',['classDay' => $classDay]);
+//        var_dump($weekDay);
+        return view('user.day',['weekDay' => $weekDay]);
     }
 
 }
