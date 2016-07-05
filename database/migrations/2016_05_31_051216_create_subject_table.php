@@ -38,6 +38,8 @@ class CreateSubjectTable extends Migration
             $table->integer('secondExercises');
             //科目概要
             $table->string('subjectOverview');
+            //選択科目フラグ
+            $table->boolean('elective_Flag');
             
             $table->timestamps();
         });
