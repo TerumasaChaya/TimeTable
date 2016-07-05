@@ -23,4 +23,10 @@ class classDay_table extends Model
         return $this->belongsTo('App\class_table');
 
     }
+
+    //hasMany設定
+    public function room()
+    {
+        return $this->belongsTo('App\room_table','id');
+    }
 }

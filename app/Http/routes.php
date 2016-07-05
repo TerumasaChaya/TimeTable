@@ -45,8 +45,9 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
 
 <<<<<<< HEAD
 //
-Route::get('/test','WeekDay@getDay');
+Route::get('/test','DataBaseControllers\WeekDay@getDay');
 
+Route::get('/test2','DataBaseControllers\TestDataBaseController@test');
 
 //ログインテスト
 =======
