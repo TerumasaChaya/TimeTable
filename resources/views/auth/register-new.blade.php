@@ -107,9 +107,9 @@
                         <div class="col-md-6">
                             <!--<input id="class" type="text" class="form-control" name="class" value="{{ old('class') }}"> -->
                             <select name="class">
-                                <option value="ie4a">ie4a</option>
-                                <option value="ie5a">ie5a</option>
-                                <option value="ie6a">ie6a</option>
+                                <option value="IE2A">IE2A</option>
+                                <option value="IE3A">IE3A</option>
+                                <option value="IE4A">IE4A</option>
                             </select>
 
                             @if ($errors->has('class'))
