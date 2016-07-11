@@ -32,9 +32,7 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
 
     //アドミンテスト
     Route::group(['prefix' => 'admin'], function(){
-
-
-
+        
         Route::get('main', function () {
             return view('admin.main');
         });
@@ -43,7 +41,13 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
             return view('admin.excel');
         });
 
+        Route::get('delete', function () {
+            return view('admin.delete');
+        });
+
         Route::post('/upload', 'ExcelController@upFile');
+
+        Route::post('/delete/', 'ExcelController@delData');
 
     });
 

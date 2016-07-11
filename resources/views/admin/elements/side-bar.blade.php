@@ -96,11 +96,11 @@
                 </li>
 
                 <li>
-                    <a href="Charts.html">
+                    <a href="/admin/delete">
                         <i class="fa fa-bar-chart-o fa-fw">
                             <div class="icon-bg bg-orange"></div>
                         </i>
-                        <span class="menu-title">ここにページのタイトルが入る</span>
+                        <span class="menu-title">削除画面</span>
                     </a>
                 </li>
 
