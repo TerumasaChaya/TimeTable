@@ -45,7 +45,6 @@ Route::group(['middleware' => 'guest:user'], function() {
 });
 
 Route::group(['middleware' => 'auth:user'], function() {
-    Route::get('/home', 'HomeController@top');
 });
 /*ログインテスト
 Route::group(['prefix' => 'login'], function(){
