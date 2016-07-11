@@ -1,7 +1,9 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>reset</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,9 +20,10 @@
 <div class="page-form">
     <div class="panel panel-blue">
         <div class="panel-body pan">
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
-            <!-- <form action="{{ url('/password/email') }}" class="form-horizontal" method="POST" role="form"> -->
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/password/reset') }}">
                 {{ csrf_field() }}
+
+                <input type="hidden" name="token" value="{{ $token }}">
 
                 <div class="form-body pal">
                     <div class="col-md-12 text-center">
@@ -35,22 +38,17 @@
                         <div class="col-md-9 text-center">
                             <h1>
                                 パスワードリセット</h1>
-                            <h2>(一般)</h2>
+                            <h2>(管理者)</h2>
                             <br />
 
                         </div>
                     </div>
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            メールアドレス宛にリセット用のURLを送信したぞ！
-                        </div>
-                    @endif
 
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="email" class="col-md-4 control-label">メールアドレス</label>
 
                         <div class="col-md-6">
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
+                            <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}">
 
                             @if ($errors->has('email'))
                                 <span class="help-block">
@@ -60,10 +58,37 @@
                         </div>
                     </div>
 
+                    <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
+                        <label for="password" class="col-md-4 control-label">新しいパスワード</label>
+
+                        <div class="col-md-6">
+                            <input id="password" type="password" class="form-control" name="password">
+
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                        <label for="password-confirm" class="col-md-4 control-label">新しいパスワード再入力</label>
+                        <div class="col-md-6">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+
+                            @if ($errors->has('password_confirmation'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
                     <div class="form-group mbn">
                         <div class="col-lg-12" align="right">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-btn fa-envelope"></i> リセット用のURLを送信する
+                                <i class="fa fa-btn fa-refresh"></i> 変更する
                             </button>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>reset email</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,8 +18,8 @@
 <div class="page-form">
     <div class="panel panel-blue">
         <div class="panel-body pan">
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
-            <!-- <form action="{{ url('/password/email') }}" class="form-horizontal" method="POST" role="form"> -->
+            <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/password/email') }}">
+                <!-- <form action="{{ url('/password/email') }}" class="form-horizontal" method="POST" role="form"> -->
                 {{ csrf_field() }}
 
                 <div class="form-body pal">
@@ -35,7 +35,7 @@
                         <div class="col-md-9 text-center">
                             <h1>
                                 パスワードリセット</h1>
-                            <h2>(一般)</h2>
+                            <h2>(管理者)</h2>
                             <br />
 
                         </div>

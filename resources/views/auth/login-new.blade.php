@@ -70,16 +70,16 @@
                     <div class="rememberpass" style="padding-left:280px;">
                 <input type="checkbox" name="rememberusername" id="rememberusername" value="1" checked="checked" />
                   <label for="rememberusername">ユーザ名を記憶する</label>
-              </div>
+                </div>
                     <div class="form-group mbn">
                         <div class="col-lg-12" align="right">
                             <div class="form-group mbn">
                                 <div class="col-lg-3">
-                                    <a href="login.blade.php" class="btn btn-default">アカウント作成</a>&nbsp;&nbsp;
+                                    <a href="{{ url('/register') }}" class="btn btn-default">アカウント作成</a>&nbsp;&nbsp;
                                 </div>
                                 <div class="col-lg-9">
                                     <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-btn fa-sign-in"></i> Login
+                                        <i class="fa fa-btn fa-sign-in"></i> ログイン
                                     </button>
                                     <button type="submit" class="btn btn-default">キャンセル
                                         </button>
@@ -93,7 +93,10 @@
         </div>
         <div class="col-lg-12 text-center">
             <p>
-                <a href="login.blade.php">管理者の方はこちら</a>&nbsp;&nbsp;
+                <a href="{{ url('/admin/login') }}">管理者の方はこちら</a>&nbsp;&nbsp;
+            </p>
+            <p>
+                <a href="{{ url('/password/reset') }}">パスワードを忘れた方はこちら</a>&nbsp;&nbsp;
             </p>
         </div>
     </div>

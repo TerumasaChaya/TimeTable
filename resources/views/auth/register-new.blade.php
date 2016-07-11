@@ -1,9 +1,7 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>register</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,11 +18,8 @@
 <div class="page-form">
     <div class="panel panel-blue">
         <div class="panel-body pan">
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
+            <form action="{{ url('/register') }}" class="form-horizontal" method="POST" role="form">
                 {{ csrf_field() }}
-
-                <input type="hidden" name="token" value="{{ $token }}">
-
                 <div class="form-body pal">
                     <div class="col-md-12 text-center">
                         <h1 style="margin-top: -90px; font-size: 48px;">
@@ -37,32 +32,52 @@
                         </div>
                         <div class="col-md-9 text-center">
                             <h1>
-                                パスワードリセット</h1>
-                            <h2>(一般)</h2>
+                                アカウント登録</h1>
                             <br />
 
                         </div>
                     </div>
 
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="email" class="col-md-4 control-label">メールアドレス</label>
+                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <label for="name" class="col-md-4 control-label">名前</label>
 
                         <div class="col-md-6">
-                            <input id="email" type="email" class="form-control" name="email" value="{{ $email or old('email') }}">
+                            <div class="input-icon right">
+                                <i class="fa fa-user"></i>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+                            </div>
 
-                            @if ($errors->has('email'))
+                            @if ($errors->has('name'))
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('name') }}</strong>
                                     </span>
                             @endif
                         </div>
                     </div>
 
+                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                        <label for="email" class="col-md-3 control-label">
+                            メールアドレス:</label>
+                        <div class="col-md-9">
+                                <input id="email" type="email" placeholder="" class="form-control" name="email" value="{{ old('email') }}"/>
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                            @endif
+                        </div>
+                    </div>
+
+
+
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label for="password" class="col-md-4 control-label">新しいパスワード</label>
+                        <label for="password" class="col-md-4 control-label">パスワード：</label>
 
                         <div class="col-md-6">
-                            <input id="password" type="password" class="form-control" name="password">
+                            <div class="input-icon right">
+                                <i class="fa fa-lock"></i>
+                                <input id="password" type="password" class="form-control" name="password">
+                            </div>
 
                             @if ($errors->has('password'))
                                 <span class="help-block">
@@ -73,7 +88,8 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                        <label for="password-confirm" class="col-md-4 control-label">新しいパスワード再入力</label>
+                        <label for="password-confirm" class="col-md-4 control-label">パスワード再入力：</label>
+
                         <div class="col-md-6">
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
 
@@ -85,10 +101,29 @@
                         </div>
                     </div>
 
+                    <div class="form-group{{ $errors->has('class') ? ' has-error' : '' }}">
+                        <label for="class" class="col-md-4 control-label">クラス：</label>
+
+                        <div class="col-md-6">
+                            <!--<input id="class" type="text" class="form-control" name="class" value="{{ old('class') }}"> -->
+                            <select name="class">
+                                <option value="ie4a">ie4a</option>
+                                <option value="ie5a">ie5a</option>
+                                <option value="ie6a">ie6a</option>
+                            </select>
+
+                            @if ($errors->has('class'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('class') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
                     <div class="form-group mbn">
                         <div class="col-lg-12" align="right">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-btn fa-refresh"></i> 変更する
+                                <i class="fa fa-btn fa-user"></i> 登録
                             </button>
                         </div>
                     </div>

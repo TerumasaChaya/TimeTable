@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
+    <title>register</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,12 +15,11 @@
     <link type="text/css" rel="stylesheet" href="/design/styles/style-responsive.css">
 </head>
 <body style="background: url('/design/images/bg/bg.png') center center fixed;">
-    <div class="page-form">
-        <div class="panel panel-blue">
-            <div class="panel-body pan">
-                <form action="{{ url('/admin/login') }}" class="form-horizontal" method="POST" role="form">
-                    {{ csrf_field() }}
-
+<div class="page-form">
+    <div class="panel panel-blue">
+        <div class="panel-body pan">
+            <form action="{{ url('/admin/register') }}" class="form-horizontal" method="POST" role="form">
+                {{ csrf_field() }}
                 <div class="form-body pal">
                     <div class="col-md-12 text-center">
                         <h1 style="margin-top: -90px; font-size: 48px;">
@@ -33,18 +32,34 @@
                         </div>
                         <div class="col-md-9 text-center">
                             <h1>
-                                管理者ログイン画面</h1>
+                                管理者アカウント登録</h1>
                             <br />
-                           
+
                         </div>
                     </div>
+
+                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        <label for="name" class="col-md-4 control-label">名前</label>
+
+                        <div class="col-md-6">
+                            <div class="input-icon right">
+                                <i class="fa fa-user"></i>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}">
+                            </div>
+
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                         <label for="email" class="col-md-3 control-label">
                             メールアドレス:</label>
                         <div class="col-md-9">
-                            <div class="input-icon right">
-                                <i class="fa fa-user"></i>
-                                <input id="email" type="email" placeholder="" class="form-control" name="email" value="{{ old('email') }}"/></div>
+                                <input id="email" type="email" placeholder="" class="form-control" name="email" value="{{ old('email') }}"/>
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                             <strong>{{ $errors->first('email') }}</strong>
@@ -53,56 +68,53 @@
                         </div>
                     </div>
 
+
+
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label for="password" class="col-md-3 control-label">
-                            パスワード:</label>
-                        <div class="col-md-9">
+                        <label for="password" class="col-md-4 control-label">パスワード：</label>
+
+                        <div class="col-md-6">
                             <div class="input-icon right">
                                 <i class="fa fa-lock"></i>
-                                <input id="password" type="password" placeholder="" class="form-control" name="password" /></div>
+                                <input id="password" type="password" class="form-control" name="password">
+                            </div>
+
                             @if ($errors->has('password'))
                                 <span class="help-block">
-                                            <strong>{{ $errors->first('password') }}</strong>
-                                        </span>
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+                        <label for="password-confirm" class="col-md-4 control-label">パスワード再入力：</label>
+
+                        <div class="col-md-6">
+                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+
+                            @if ($errors->has('password_confirmation'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
                             @endif
                         </div>
                     </div>
 
 
-                    <div class="rememberpass" style="padding-left:280px;">
-                        <input type="checkbox" name="rememberusername" id="rememberusername" value="1" checked="checked" />
-                        <label for="rememberusername">ユーザ名を記憶する</label>
-                    </div>
+
                     <div class="form-group mbn">
                         <div class="col-lg-12" align="right">
-                            <div class="form-group mbn">
-                                <div class="col-lg-3">
-
-                                </div>
-                                <div class="col-lg-9">
-                                    <!--<a href="../user/login.blade.php" class="btn btn-default">ログイン</a>&nbsp;&nbsp; -->
-                                    <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-btn fa-sign-in"></i> Login
-                                    </button>
-
-                                    <button type="submit" class="btn btn-default">キャンセル
-                                        </button>
-                                </div>
-                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-btn fa-user"></i> 登録
+                            </button>
                         </div>
                     </div>
                 </div>
-                </form>
-            </div>
-        </div>
-        <div class="col-lg-12 text-center">
-            <p>
-                <a href="{{ url('/login') }}">一般ユーザーの方はこちら</a>&nbsp;&nbsp;
-            </p>
-            <p>
-                <a href="{{ url('/admin/password/reset') }}">パスワードを忘れた方はこちら</a>&nbsp;&nbsp;
-            </p>
+            </form>
         </div>
     </div>
+
+</div>
 </body>
 </html>

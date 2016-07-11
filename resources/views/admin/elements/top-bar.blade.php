@@ -62,9 +62,9 @@
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-lock"></i>
-                                    Lock Screen
+                                <a href="{{ url('/admin/register') }}">
+                                    <i class="fa fa-key"></i>
+                                    管理者を追加する
                                 </a>
                             </li>
                             <li>

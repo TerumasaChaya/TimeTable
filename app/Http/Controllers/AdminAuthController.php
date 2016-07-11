@@ -16,6 +16,7 @@ class AdminAuthController extends Controller
     protected $guard = 'admin';
     protected $redirectTo = '/admin/home';
     protected $loginView = 'admin.login-new';
+    protected $redirectAfterLogout = '/admin/login';
 
     /**
      * Create a new authentication controller instance.
