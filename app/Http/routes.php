@@ -32,6 +32,9 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
     Route::get('/admin/register','AdminHomeController@showRegistrationForm');
     Route::post('/admin/register','AdminHomeController@register');
 
+    Route::get('/admin/profile', 'AdminInfoController@getProfile');
+    Route::post('/admin/profile', 'AdminInfoController@postProfile');
+
 });
 Route::get('/admin/logout','AdminAuthController@logout');
 
@@ -44,49 +47,10 @@ Route::group(['middleware' => 'guest:user'], function() {
     Route::get('/password/reset/{token?}', 'Auth\PasswordController@showResetForm');
 });
 
-Route::group(['middleware' => 'auth:user'], function() {
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/profile', 'UserInfoController@getProfile');
+    Route::post('/profile', 'UserInfoController@postProfile');
 });
-/*ログインテスト
-Route::group(['prefix' => 'login'], function(){
-    Route::get('user', function () {
-        return view('login-user');
-    });
-    Route::get('admin', function () {
-        return view('login-admin');
-    });
-});
-*/
-
-/*ユーザーテスト
-Route::group(['prefix' => 'user'], function(){
-
-    Route::group(['prefix' => 'attendance'], function(){
-        Route::get('/', 'attendanceController@index');
-        Route::post('/show', 'attendanceController@show');
-    });
-
-    Route::get('week', function () {
-        return view('user.week');
-    });
-
-    Route::get('main', function () {
-        return view('user.main');
-    });
-
-});
-*/
-
-/*アドミンテスト
-Route::group(['prefix' => 'admin'], function(){
-
-    Route::get('main', function () {
-        return view('admin.main');
-    });
-});
-*/
-Route::auth();
-
-Route::get('/home', 'HomeController@index');
 
 Route::auth();
 

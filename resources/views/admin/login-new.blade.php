@@ -85,8 +85,6 @@
                                         <i class="fa fa-btn fa-sign-in"></i> Login
                                     </button>
 
-                                    <button type="submit" class="btn btn-default">キャンセル
-                                        </button>
                                 </div>
                             </div>
                         </div>

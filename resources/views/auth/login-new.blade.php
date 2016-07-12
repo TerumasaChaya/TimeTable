@@ -74,15 +74,14 @@
                     <div class="form-group mbn">
                         <div class="col-lg-12" align="right">
                             <div class="form-group mbn">
-                                <div class="col-lg-3">
-                                    <a href="{{ url('/register') }}" class="btn btn-default">アカウント作成</a>&nbsp;&nbsp;
-                                </div>
+
                                 <div class="col-lg-9">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-btn fa-sign-in"></i> ログイン
                                     </button>
-                                    <button type="submit" class="btn btn-default">キャンセル
-                                        </button>
+                                </div>
+                                <div class="col-lg-3">
+                                    <a href="{{ url('/register') }}" class="btn btn-default">アカウント作成</a>
                                 </div>
                             </div>
                         </div>
