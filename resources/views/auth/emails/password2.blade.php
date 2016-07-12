@@ -1,0 +1,1 @@
+ここをクリックしてパスワードを変更しろよな！: {{ $link = url('/admin/password/reset', $token).'?email='.urlencode($user->getEmailForPasswordReset()) }}">

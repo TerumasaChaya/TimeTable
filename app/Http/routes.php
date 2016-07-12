@@ -21,11 +21,15 @@ Route::get('/', function(){
 Route::group(['middleware' => 'guest:admin'], function () { //←このグループで括る
     Route::get('/admin/login','AdminAuthController@showLoginForm');
     Route::post('/admin/login','AdminAuthController@login');
+    Route::post('/admin/password/email', 'AdminPasswordController@sendResetLinkEmail');
+    Route::post('/admin/password/reset', 'AdminPasswordController@reset');
+    Route::get('/admin/password/reset/{token?}', 'AdminPasswordController@showResetForm');
 });
 
 Route::group(['middleware' => 'auth:admin'], function () { //←このグループで括る
 
-    //アドミンテスト
+
+    //アドミン
     Route::group(['prefix' => 'admin'], function(){
 
         Route::get('/', 'AdminHomeController@index');
@@ -37,14 +41,23 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
 
         Route::post('/upload', 'ExcelController@upFile');
 
+        Route::get('/register','AdminHomeController@showRegistrationForm');
+        Route::post('/register','AdminHomeController@register');
+
+        Route::get('/profile', 'AdminInfoController@getProfile');
+        Route::post('/profile', 'AdminInfoController@postProfile');
+
+
+        Route::get('/logout','AdminAuthController@logout');
+
     });
 
 });
-Route::get('/admin/logout','AdminAuthController@logout');
+
 Route::auth();
 Route::get('/home', 'HomeController@index');
 
-//ユーザーテスト
+//ユーザー
 Route::group(['prefix' => 'user'], function(){
 
     Route::group(['prefix' => 'attendance'], function(){
@@ -67,3 +80,18 @@ Route::group(['prefix' => 'user'], function(){
     Route::get('/SubjectInfo/{id}','Day@getInfo');
 
 });
+
+Route::group(['middleware' => 'guest:user'], function() {
+    Route::get('/login', 'Auth\AuthController@showLoginForm');
+    Route::post('/login', 'Auth\AuthController@login');
+    Route::get('/logout', 'Auth\AuthController@logout');
+    Route::post('/password/email', 'Auth\PasswordController@sendResetLinkEmail');
+    Route::post('/password/reset', 'Auth\PasswordController@reset');
+    Route::get('/password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+});
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/profile', 'UserInfoController@getProfile');
+    Route::post('/profile', 'UserInfoController@postProfile');
+});
+

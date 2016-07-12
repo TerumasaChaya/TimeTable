@@ -1,3 +1,7 @@
+<!--
+
+使ってないよ auth/login-new　を使用中
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +66,7 @@
                         <div class="col-lg-12" align="right">
                             <div class="form-group mbn">
                                 <div class="col-lg-3">
-                                    <a href="login.blade.php" class="btn btn-default">アカウント作成</a>&nbsp;&nbsp;
+                                    <a href="{{ url('/register') }}" class="btn btn-default">アカウント作成</a>&nbsp;&nbsp;
                                 </div>
                                 <div class="col-lg-9">
                                     <a href="login.blade.php" class="btn btn-default">ログイン</a>&nbsp;&nbsp;
@@ -78,9 +82,10 @@
         </div>
         <div class="col-lg-12 text-center">
             <p>
-                <a href="login.blade.php">管理者の方はこちら</a>&nbsp;&nbsp;
+                <a  href="{{ url('/admin/login') }}">管理者の方はこちら</a>;
             </p>
         </div>
     </div>
 </body>
 </html>
+

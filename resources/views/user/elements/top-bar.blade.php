@@ -53,19 +53,13 @@
                                     <span class="badge badge-danger">3</span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-tasks"></i>
-                                    My Tasks
-                                    <span class="badge badge-success">7</span>
-                                </a>
-                            </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-lock"></i>
-                                    Lock Screen
+                                <a href="{{ url('/profile') }}">
+                                    <i class="fa fa-key"></i>
+                                    登録情報
                                 </a>
+                            </li>
                             </li>
                             <li>
                                 <a href="{{ url('/logout') }}">

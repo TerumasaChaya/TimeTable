@@ -50,6 +50,10 @@ class AuthController extends Controller
         return view('auth.login-new');
     }
 
+    public function showRegistrationForm(){
+        return view('auth.register-new');
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
