@@ -22,7 +22,11 @@ class CreateTeacherTable extends Migration
             $table->integer('assignCollege_Id');
             //雇用形態
             $table->string('hireForm');
-            
+            //写真ファイル名
+            $table->string("fileName");
+            //一言コメント
+            $table->string("comment");
+
             $table->timestamps();
         });
     }

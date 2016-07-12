@@ -9,7 +9,7 @@ class Teacher_table extends Model
     protected $table = "Teacher";
 
     protected $fillable = [
-        "id","TeacherName","assignCollege_Id","hideForm"
+        "id","TeacherName","assignCollege_Id","hideForm","fileName","comment"
         
     ];
 

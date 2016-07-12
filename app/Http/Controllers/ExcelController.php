@@ -23,11 +23,11 @@ class ExcelController extends Controller
     {
         ini_set('max_execution_time', 30000);
 
-        $this->college();
-        $this->teacher();
-        $this->class_a();
-        $this->room();
-        $this->area();
+//        $this->college();
+//        $this->teacher();
+//        $this->class_a();
+//        $this->room();
+//        $this->area();
         $this->subject();
         $this->repteacher();
         $this->classDay();
@@ -144,6 +144,8 @@ class ExcelController extends Controller
                 $Teacher_table = new Teacher_table();
                 $Teacher_table->TeacherName = $value[0];
                 $Teacher_table->assignCollege_Id = $value[1];
+                $Teacher_table->fileName = "default.jpg";
+                $Teacher_table->comment = "こんにちは". $value[0]."です！よろしくね。";
                 if(isset($value[3])){
                     $Teacher_table->hireForm = $value[3];
                 }

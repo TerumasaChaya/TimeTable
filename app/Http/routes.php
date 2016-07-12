@@ -27,11 +27,23 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
     Route::get('/admin', 'AdminHomeController@index');
     Route::get('/admin/home','AdminHomeController@index');
 
+    Route::group(['prefix' => 'admin/teacher'], function(){
+        Route::get('/', 'adminTeacherController@index');
+        Route::get('/edit/{id}', 'adminTeacherController@edit');
+        Route::post('/upImg', 'adminTeacherController@setTeacherImage');
+    });
+    
 });
 Route::get('/admin/logout','AdminAuthController@logout');
 
 Route::auth();
 Route::get('/home', 'HomeController@index');
+
+Route::group(['prefix' => 'image'], function(){
+    Route::get('teacherImage/{name}', 'ImageController@teacherImage');
+
+});
+
 /*ログインテスト
 Route::group(['prefix' => 'login'], function(){
     Route::get('user', function () {
