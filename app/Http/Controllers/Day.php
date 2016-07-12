@@ -6,7 +6,7 @@
  * Time: 10:14
  */
 
-namespace App\Http\Controllers\DataBaseControllers;
+namespace App\Http\Controllers;
 
 
 use App\Http\Controllers\Controller;
@@ -14,6 +14,7 @@ use App\classDay_table;
 use App\subject_table;
 use App\room_table;
 use Carbon\Carbon;
+use Auth;
 use Symfony\Component\DomCrawler\Crawler;
 
 class Day extends Controller
@@ -32,7 +33,7 @@ class Day extends Controller
         $w = $week[$date->dayOfWeek];
 
         //クラスID取得
-        $classId = 1;
+        $classId = Auth::user()->class;
 
         //classDay_tableのクラスID、曜日が合致した行をすべて取得
         $weekDay = classDay_table::distinct()

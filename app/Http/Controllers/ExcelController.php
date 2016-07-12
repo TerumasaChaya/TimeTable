@@ -52,23 +52,21 @@ class ExcelController extends Controller
         }else{
             return "error";
         }
-        return redirect('/admin/main');
+        return redirect('/admin/home');
     }
 
     public function getFile()
     {
         ini_set('max_execution_time', 30000);
 
-        //$this->excelData = $this->excelData;
-
-        //$this->college();
-//        $this->teacher();
-//        $this->class_a();
-//        $this->room();
-//        $this->area();
-//        $this->subject();
-//        $this->repteacher();
-//        $this->classDay();
+        $this->college();
+        $this->teacher();
+        $this->class_a();
+        $this->room();
+        $this->area();
+        $this->subject();
+        $this->repteacher();
+        $this->classDay();
     }
     //所属カレッジ
     private function college(){

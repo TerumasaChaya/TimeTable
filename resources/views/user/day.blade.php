@@ -48,11 +48,8 @@
                                     <table class="table table-hover table-bordered">
                                         <thead>
                                         <tr>
-                                            <th>#</th>
-                                            <th>Column</th>
-                                            {{--<th>Column</th>--}}
-                                            {{--<th>Column</th>--}}
-                                            {{--<th>Column</th>--}}
+                                            <th>時限</th>
+                                            <th>科目名</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -63,7 +60,7 @@
                                                        {{$week->period}}
                                                     </td>
                                                     <td>
-                                                        <A Href="/user/SubjectInfo/{{$week->id}}" Target="_blank">{{$week->subject->subject}}</A>
+                                                        <a href="/user/SubjectInfo/{{$week->id}}">{{$week->subject->subject}}</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
