@@ -52,10 +52,22 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
 
     });
 
+    Route::group(['prefix' => 'admin/teacher'], function(){
+        Route::get('/', 'adminTeacherController@index');
+        Route::get('/edit/{id}', 'adminTeacherController@edit');
+        Route::post('/upImg', 'adminTeacherController@setTeacherImage');
+    });
+    
 });
 
 Route::auth();
 Route::get('/home', 'HomeController@index');
+
+Route::group(['prefix' => 'image'], function(){
+    Route::get('teacherImage/{name}', 'ImageController@teacherImage');
+
+});
+
 
 //ユーザー
 Route::group(['prefix' => 'user'], function(){
