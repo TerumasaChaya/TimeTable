@@ -11,57 +11,17 @@
 |
 */
 
-//Route::get('/excel', 'ExcelController@getFile');
+Route::get('/excel', 'ExcelController@getFile');
 
 // app/Http/Controllers/deviceController に飛ぶ
-Route::get('/', function(){
-    return view('auth.login-new');
-});
+Route::get('/', 'deviceController@selectDevice');
 
-Route::group(['middleware' => 'guest:admin'], function () { //←このグループで括る
-    Route::get('/admin/login','AdminAuthController@showLoginForm');
-    Route::post('/admin/login','AdminAuthController@login');
-});
-
-Route::group(['middleware' => 'auth:admin'], function () { //←このグループで括る
-
-
-    Route::get('/admin', 'AdminHomeController@index');
-    Route::get('/admin/home','AdminHomeController@index');
-
-
-    //アドミンテスト
-    Route::group(['prefix' => 'admin'], function(){
-
-
-
-        Route::get('main', function () {
-            return view('admin.main');
-        });
-
-        Route::get('excel', function () {
-            return view('admin.excel');
-        });
-
-<<<<<<< HEAD
-//
-Route::get('/test','DataBaseControllers\WeekDay@getDay');
 
 Route::get('/test2','DataBaseControllers\TestDataBaseController@test');
 
+
+
 //ログインテスト
-=======
-        Route::post('/upload', 'ExcelController@upFile');
-
-    });
-
-});
-Route::get('/admin/logout','AdminAuthController@logout');
-
-Route::auth();
-Route::get('/home', 'HomeController@index');
-/*ログインテスト
->>>>>>> ChayaTimeTable/master
 Route::group(['prefix' => 'login'], function(){
     Route::get('user', function () {
         return view('login-user');
@@ -70,9 +30,8 @@ Route::group(['prefix' => 'login'], function(){
         return view('login-admin');
     });
 });
-*/
 
-/*ユーザーテスト
+//ユーザーテスト
 Route::group(['prefix' => 'user'], function(){
 
     Route::group(['prefix' => 'attendance'], function(){
@@ -88,6 +47,18 @@ Route::group(['prefix' => 'user'], function(){
         return view('user.main');
     });
 
-});
-*/
+    //1日時間割表示ページ
+    Route::get('/Day','DataBaseControllers\Day@getDay');
 
+    //授業の詳細ページ表示
+    Route::get('/SubjectInfo/{id}','DataBaseControllers\Day@getInfo');
+
+});
+
+//アドミンテスト
+Route::group(['prefix' => 'admin'], function(){
+
+    Route::get('main', function () {
+        return view('admin.main');
+    });
+});

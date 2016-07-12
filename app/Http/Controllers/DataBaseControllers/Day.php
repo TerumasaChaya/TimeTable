@@ -11,13 +11,17 @@ namespace App\Http\Controllers\DataBaseControllers;
 
 use App\Http\Controllers\Controller;
 use App\classDay_table;
+use App\subject_table;
+use App\room_table;
 use Carbon\Carbon;
 use Symfony\Component\DomCrawler\Crawler;
 
-class WeekDay extends Controller
+class Day extends Controller
 {
+    //1日分の時間割表示
     public function getDay()
     {
+
         //現在時刻の取得
         $date = new Carbon(Carbon::now());
 
@@ -31,14 +35,28 @@ class WeekDay extends Controller
         $classId = 1;
 
         //classDay_tableのクラスID、曜日が合致した行をすべて取得
-        $classDay = classDay_table::where('class_Id','=',$classId)
+        $weekDay = classDay_table::distinct()
+            ->where('class_Id','=',$classId)
             ->where('day','=', $w)
+            ->groupBy('subject_Id')
+            ->orderBy('period', 'ASC')
+            ->distinct()
             ->get();
-
-
+        
 //        var_dump($w)
-        var_dump($classDay->subject->subject);;
-//        return view('pc',['classDay' => $classDay]);
+//        var_dump($weekDay);
+        //ビューにテーブルのデータ送信
+        return view('user.day',['weekDay' => $weekDay]);
     }
 
+    //授業の詳細を表示
+    public function getInfo($id){
+
+        $day = classDay_table::where('id','=',$id)
+            ->first();
+        
+
+//        var_dump($day->room->id);
+        return view('user.subject-info',['subject' => $day->subject],['room' => $day->room]);
+    }
 }
