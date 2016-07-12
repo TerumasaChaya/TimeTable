@@ -10,14 +10,15 @@ class class_table extends Model
     protected $table = "class";
 
     protected $fillabel = [
+
         "id","teacher_Id","className","grade","dept","course","college","person"
     ];
-    //hasMany設定
     public function classDay()
     {
-        return $this->hasMany('App\classDay_table');
+        return $this->hasManyThrough('App\subject_table', 'App\classDay_table', 'class_Id');
 
     }
+
     //hasMany設定
     public function users()
     {

@@ -15,8 +15,8 @@ class room_table extends Model
         "id","roomName","roomKind","roomCapa","building","Floor"
     ];
     //hasMany設定
-    public function subject()
+    public function room()
     {
-        return $this->hasMany('App\subject_table','room_Id');
+        return $this->hasMany('App\classDay_table');
     }
 }
