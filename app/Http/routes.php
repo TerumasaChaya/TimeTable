@@ -16,10 +16,10 @@ Route::get('/excel', 'ExcelController@getFile');
 // app/Http/Controllers/deviceController に飛ぶ
 Route::get('/', 'deviceController@selectDevice');
 
-//
-Route::get('/test','DataBaseControllers\WeekDay@getDay');
 
 Route::get('/test2','DataBaseControllers\TestDataBaseController@test');
+
+
 
 //ログインテスト
 Route::group(['prefix' => 'login'], function(){
@@ -46,6 +46,12 @@ Route::group(['prefix' => 'user'], function(){
     Route::get('main', function () {
         return view('user.main');
     });
+
+    //1日時間割表示ページ
+    Route::get('/Day','DataBaseControllers\Day@getDay');
+
+    //授業の詳細ページ表示
+    Route::get('/SubjectInfo/{id}','DataBaseControllers\Day@getInfo');
 
 });
 

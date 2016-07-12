@@ -16,11 +16,11 @@
                 </li>
 
                 <li>
-                    <a href="Layout.html">
+                    <a href="/user/Day">
                         <i class="fa fa-desktop fa-fw">
                             <div class="icon-bg bg-pink"></div>
                         </i>
-                        <span class="menu-title">ここにページのタイトルが入る</span>
+                        <span class="menu-title">今日の時間割</span>
                     </a>
                 </li>
 
