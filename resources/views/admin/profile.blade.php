@@ -1,5 +1,5 @@
 
-@extends('user.elements.basic')
+@extends('admin.elements.basic')
 
 @section('title')
     登録情報
