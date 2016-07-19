@@ -65,7 +65,6 @@ class ExcelController extends Controller
         $room_table = new room_table();
         $area_table = new area_table();
         $subject_table = new subject_table();
-        $repTeacher_table = new repTeacher_table();
         $classDay_table = new classDay_table();
 
         $college_table->truncate();
@@ -74,7 +73,6 @@ class ExcelController extends Controller
         $room_table->truncate();
         $area_table->truncate();
         $subject_table->truncate();
-        $repTeacher_table->truncate();
         $classDay_table->truncate();
 
         return redirect('/admin/home');
