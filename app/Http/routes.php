@@ -48,10 +48,16 @@ Route::group(['prefix' => 'user'], function(){
     });
 
     //1日時間割表示ページ
-    Route::get('/Day','DataBaseControllers\Day@getDay');
+    Route::get('/day','DataBaseControllers\Day@getDay');
 
     //授業の詳細ページ表示
-    Route::get('/SubjectInfo/{id}','DataBaseControllers\Day@getInfo');
+    Route::get('/subjectinfo/{id}','DataBaseControllers\Day@getInfo');
+
+    //教室一覧ページ
+    Route::get('/roomlist','DataBaseControllers\RoomInfo@getRoomList');
+
+    //教室詳細
+    Route::get('/roominfo/{id}','DataBaseControllers\RoomInfo@getRoomInfo');
 
 });
 
