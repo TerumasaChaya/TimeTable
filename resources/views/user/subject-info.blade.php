@@ -44,19 +44,19 @@
                                 <div class="panel-body">
                                     <table class="table table-hover table-bordered">
                                         <tr>
-                                            <td width="100" align="center">授業名</td>
+                                            <td width="100" align="center">授業概要</td>
                                             <td>{{$subject->subjectOverview}}</td>
                                         </tr>
                                         <tr>
                                             <td width="100" align="center">教室名</td>
-                                            <td>{{$room->roomName}}</td>
+                                            <td><a href="/user/roominfo/{{$room->id}}}">{{$room->roomName}}</a></td>
                                         </tr>
                                         <tr>
                                             {{--教師の詳細ページへのリンク--}}
-                                            {{--<A Href="" Target="_blank">--}}
+                                            {{--<a Href="" Target="_blank">--}}
                                                 <td width="100" align="center">担当教師</td>
                                                 <td>{{$room->roomName}}</td>
-                                            {{--</A>--}}
+                                            {{--</a>--}}
                                         </tr>
                                     </table>
                                 </div>
@@ -64,6 +64,8 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
