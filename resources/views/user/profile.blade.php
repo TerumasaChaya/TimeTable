@@ -75,7 +75,7 @@
                                 <select name="class">
                                     @foreach(\App\class_table::all() as $class )
 
-                                        @if($class->className == old('class',  Auth::user()->class ) )
+                                        @if($class->id == Auth::user()->class )
                                             <option value="{{$class->id}}" selected="selected">{{$class->className}}</option>
                                         @else
                                             <option value="{{$class->id}}">{{$class->className}}</option>

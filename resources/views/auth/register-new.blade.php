@@ -107,9 +107,9 @@
                         <div class="col-md-6">
                             <!--<input id="class" type="text" class="form-control" name="class" value="{{ old('class') }}"> -->
                             <select name="class">
-                                <option value="IE2A">IE2A</option>
-                                <option value="IE3A">IE3A</option>
-                                <option value="IE4A">IE4A</option>
+                                @foreach(\App\class_table::all() as $class )
+                                    <option value="{{$class->id}}">{{$class->className}}</option>
+                                @endforeach
                             </select>
 
                             @if ($errors->has('class'))
