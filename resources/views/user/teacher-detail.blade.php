@@ -1,20 +1,20 @@
 <!--
-    {管理者}教師編集ビュー
-    作成日:2016/7/11~2016/7/12
+    {ユーザ}教師編集ビュー
+    作成日:2016/7/19~2016/7/1
     作成者:村上 慧
 -->
 
-@extends('admin.elements.basic')
+@extends('user.elements.basic')
 
 @section('title')
-    教師編集
+    教師詳細
 @endsection
 
 @section('content-header')
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header">
             <div class="page-title mrm">
-                教師編集
+                教師詳細
             </div>
         </div>
         <hr/>
@@ -22,7 +22,7 @@
             <li>
                 <i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i
                         class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li><a href="#">教師編集</a>&nbsp;&nbsp;
+            <li><a href="#">教師詳細</a>&nbsp;&nbsp;
         </ol>
         <div class="clearfix">
         </div>
@@ -53,22 +53,12 @@
 
                             </div>
                             <div class="col-lg-10" class="col-md-6" class="col-xs-6">
-
-                                <form action="/admin/teacher/upImg" method="post" enctype="multipart/form-data">
-                                    <input type="hidden" value="{{$teacher->id}}" name="teacherId">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <!-- コメント -->
-                                    <label>コメント</label><br>
-                                    <textarea name="comment" autofocus="autofocus" rows="10" cols="50">{{$teacher->comment}}</textarea><br>
-
-                                    <!-- 写真アップロード -->
-                                    写真編集<input type="file" name="upfile"><br>
-
-                                    <!-- 完了ボタン -->
-                                    <input type="submit" class="btn btn-xs btn-blue" value="完了">
-                                </form>
+                                <!-- 名前 -->
+                                <label>コメント</label><br>
+                                <!-- コメント -->
+                                <textarea name="comment" autofocus="autofocus" rows="10" cols="50" readonly>{{$teacher->comment}}</textarea><br>
                                 <!-- 戻るボタン -->
-                                <a href="/admin/teacher"><input type="button" class="btn btn-xs btn-blue"
+                                <a href="/user/teacher"><input type="button" class="btn btn-xs btn-blue"
                                                                 value="戻る"></a>
                             </div>
                         </table>

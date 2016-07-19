@@ -57,8 +57,10 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
         Route::get('/edit/{id}', 'adminTeacherController@edit');
         Route::post('/upImg', 'adminTeacherController@setTeacherImage');
     });
-    
 });
+
+
+Route::get('/admin/logout','AdminAuthController@logout');
 
 Route::auth();
 Route::get('/home', 'HomeController@index');
@@ -69,7 +71,6 @@ Route::group(['prefix' => 'image'], function(){
 });
 
 
-//ユーザー
 Route::group(['prefix' => 'user'], function(){
 
     Route::group(['prefix' => 'attendance'], function(){
@@ -85,13 +86,20 @@ Route::group(['prefix' => 'user'], function(){
         return view('user.main');
     });
 
+
     //1日時間割表示ページ
     Route::get('/Day','Day@getDay');
 
     //授業の詳細ページ表示
     Route::get('/SubjectInfo/{id}','Day@getInfo');
 
+    Route::group(['prefix' => 'teacher'], function(){
+        Route::get('/', 'userTeacherController@index');
+        Route::get('/detail/{id}', 'userTeacherController@detail');
+//        Route::post('/upImg', 'userTeacherController@setTeacherImage');
+    });
 });
+
 
 Route::group(['middleware' => 'guest:user'], function() {
     Route::get('/login', 'Auth\AuthController@showLoginForm');
