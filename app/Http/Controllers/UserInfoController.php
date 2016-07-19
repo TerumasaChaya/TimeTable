@@ -31,8 +31,10 @@ class UserInfoController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'  => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users'
+            'email' => 'required|email|max:255',
+            'class' => 'required|max:10'
         ]);
+//        |unique:users
 
 
         if ($validator->fails())
@@ -43,7 +45,8 @@ class UserInfoController extends Controller
 
         $this->user->update([
             'name'  => $request->input('name'),
-            'email' => $request->input('email')
+            'email' => $request->input('email'),
+            'class' => $request->input('class')
         ]);
 
 //        DB::table('users')
