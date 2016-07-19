@@ -14,15 +14,11 @@ class subject_table extends Model
         "id","subject","area_Id","usePC","useHard","part","credits","role","firstLecture","firstExercises","secondLecture","secondExercises","subjectOverview"
     ];
 
-    //hasMany設定
-    public function room()
-    {
-        return $this->belongsTo('App\room_table','id');
-    }
+    
     //hasMany設定
     public function repTeacher()
     {
-        return $this->belongsTo('App\repTeacher_table');
+        return $this->hasMany('App\repTeacher_table','subject_Id');
 
     }
     public function area()

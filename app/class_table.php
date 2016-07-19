@@ -15,7 +15,7 @@ class class_table extends Model
     ];
     public function classDay()
     {
-        return $this->hasManyThrough('App\subject_table', 'App\classDay_table', 'class_Id');
+        return $this->hasMany('App\classDay_table','class_Id');
 
     }
 

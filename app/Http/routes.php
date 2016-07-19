@@ -12,7 +12,7 @@
 */
 
 Route::get('/excel', 'ExcelController@getFile');
-
+Route::get('/test', 'DataBaseControllers\TestDataBaseController@test');
 // app/Http/Controllers/deviceController に飛ぶ
 Route::get('/', 'deviceController@selectDevice');
 
@@ -51,3 +51,5 @@ Route::group(['prefix' => 'admin'], function(){
         return view('admin.main');
     });
 });
+
+
