@@ -7,11 +7,11 @@
 
                 <div class="clearfix"></div>
                 <li>
-                    <a href="dashboard.html">
+                    <a href="/user/week">
                         <i class="fa fa-tachometer fa-fw">
                             <div class="icon-bg bg-orange"></div>
                         </i>
-                        <span class="menu-title">ここにページのタイトルが入る</span>
+                        <span class="menu-title">今週の時間割</span>
                     </a>
                 </li>
 

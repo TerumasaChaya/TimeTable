@@ -22,7 +22,7 @@ class Teacher_table extends Model
     //hasMany設定
     public function repTeacher()
     {
-        return $this->hasMany('App\repTeacher_table');
+        return $this->hasMany('App\repTeacher_table','teacher_Id');
 
     }
 }

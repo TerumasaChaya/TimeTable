@@ -44,6 +44,7 @@
 
                                 <form action="/admin/delete" method="post" enctype="multipart/form-data" class="col-lg-8">
                                     ファイル：<input type="submit" value="削除" />
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </form>
 
                             </div>

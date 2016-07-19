@@ -100,7 +100,7 @@
                                         <a Href="/user/day">
                                             <tr>
                                                 <th>{{$room->id}}</th>
-                                                <th>{{$room->roomName}}</th>
+                                                <th><a Href="/user/roominfo/{{$room->id}}">{{$room->roomName}}</a></th>
                                                 <th>{{$room->Floor}}</th>
                                             </tr>
                                         </a>
@@ -139,7 +139,7 @@
                                         <a Href="/user/day">
                                             <tr>
                                                 <th>{{$room->id}}</th>
-                                                <th>{{$room->roomName}}</th>
+                                                <th><a Href="/user/roominfo/{{$room->id}}">{{$room->roomName}}</a></th>
                                                 <th>{{$room->Floor}}</th>
                                             </tr>
                                         </a>

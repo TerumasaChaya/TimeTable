@@ -11,7 +11,8 @@
 |
 */
 
-//Route::get('/excel', 'ExcelController@getFile');
+
+Route::get('/excel', 'ExcelController@getFile');
 
 // app/Http/Controllers/deviceController に飛ぶ
 Route::get('/', function(){
@@ -96,12 +97,13 @@ Route::group(['prefix' => 'user'], function(){
         return view('user.main');
     });
 
+    Route::get('/week', 'DataBaseControllers\TestDataBaseController@test');
 
     //1日時間割表示ページ
     Route::get('/Day','Day@getDay');
 
     //授業の詳細ページ表示
-    Route::get('/SubjectInfo/{id}','Day@getInfo');
+    Route::get('/SubjectInfo/{id}','DataBaseControllers\Day@getInfo');
 
     Route::get('/day','DataBaseControllers\Day@getDay');
 
@@ -122,6 +124,7 @@ Route::group(['prefix' => 'user'], function(){
 });
 
 
+
 Route::group(['middleware' => 'guest:user'], function() {
     Route::get('/login', 'Auth\AuthController@showLoginForm');
     Route::post('/login', 'Auth\AuthController@login');
@@ -135,4 +138,5 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/profile', 'UserInfoController@getProfile');
     Route::post('/profile', 'UserInfoController@postProfile');
 });
+
 

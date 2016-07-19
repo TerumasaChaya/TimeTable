@@ -95,42 +95,7 @@ class userTeacherController extends Controller
 
         return view('user/teacher-detail')->with("teacher",$teacher);
     }
-
-//    //教師詳細画面機能
-//    public function setTeacherImage(Request $request)
-//    {
-//        //テーブルオブジェクト作成
-//        $teacher_table = new Teacher_table();
-//
-//        //送られたコメント取得&データベースにコメントを格納------------------------------------------------
-//        //渡された教師IDを格納
-//        $id = $request->input("teacherId");
-//        //渡されたコメントを格納
-//        $comment = $request->input("comment");
-//        //教師データ取得
-//        $teacher = $teacher_table::where("id", "=", $id)->first();
-//        //データベースにコメントを格納
-//        $teacher->comment = $comment;
-//        $teacher->save();
-//
-//        //アップロードされた画像格納&データベースにファイル名格納-----------------------------------------
-//        //画像取得
-//        $image = $request->file('upfile');
-//        //画像を変更する場合のみ通す
-//        if($image) {
-//            //保存先
-//            $save_path = public_path() . '/teacherImage/';
-//            //画像名を変更し、拡張子を付属
-//            $name = str_random(20) . '.' . $image->getClientOriginalExtension();
-//            //アップロードしたファイルを保存先へ格納
-//            $request->file('upfile')->move($save_path, $name);
-//            //データベースにファイル名を格納
-//            $teacher->fileName = $name;
-//            $teacher->save();
-//        }
-//
-//        return view('user/teacher-detail')->with("teacher",$teacher);
-//    }
+    
 
 }
 
