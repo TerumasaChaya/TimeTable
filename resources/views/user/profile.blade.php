@@ -66,6 +66,34 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('class') ? ' has-error' : '' }}">
+                            <label class="col-md-4 control-label">クラス</label>
+
+                            <div class="col-md-6">
+                                {{--<input type="text" class="form-control" name="email" value="{{ old('class',  Auth::user()->class ) }}">--}}
+
+                                <select name="class">
+                                    @foreach(\App\class_table::all() as $class )
+
+                                        @if($class->className == old('class',  Auth::user()->class ) )
+                                            <option value="{{$class->id}}" selected="selected">{{$class->className}}</option>
+                                        @else
+                                            <option value="{{$class->id}}">{{$class->className}}</option>
+                                        @endif
+
+
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('class'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('class') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
