@@ -25,11 +25,11 @@
                 </li>
 
                 <li>
-                    <a href="UIElements.html">
+                    <a href="/user/teacher">
                         <i class="fa fa-send-o fa-fw">
                             <div class="icon-bg bg-green"></div>
                         </i>
-                        <span class="menu-title">ここにページのタイトルが入る</span>
+                        <span class="menu-title">教師一覧</span>
                     </a>
                 </li>
 

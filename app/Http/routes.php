@@ -32,8 +32,8 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
         Route::get('/edit/{id}', 'adminTeacherController@edit');
         Route::post('/upImg', 'adminTeacherController@setTeacherImage');
     });
-    
 });
+
 Route::get('/admin/logout','AdminAuthController@logout');
 
 Route::auth();
@@ -55,7 +55,7 @@ Route::group(['prefix' => 'login'], function(){
 });
 */
 
-/*ユーザーテスト
+//ユーザーテスト
 Route::group(['prefix' => 'user'], function(){
 
     Route::group(['prefix' => 'attendance'], function(){
@@ -71,8 +71,14 @@ Route::group(['prefix' => 'user'], function(){
         return view('user.main');
     });
 
+
+    Route::group(['prefix' => 'teacher'], function(){
+        Route::get('/', 'userTeacherController@index');
+        Route::get('/detail/{id}', 'userTeacherController@detail');
+//        Route::post('/upImg', 'userTeacherController@setTeacherImage');
+    });
 });
-*/
+
 
 /*アドミンテスト
 Route::group(['prefix' => 'admin'], function(){
