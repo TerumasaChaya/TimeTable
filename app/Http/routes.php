@@ -103,6 +103,17 @@ Route::group(['prefix' => 'user'], function(){
     //授業の詳細ページ表示
     Route::get('/SubjectInfo/{id}','Day@getInfo');
 
+    Route::get('/day','DataBaseControllers\Day@getDay');
+
+    //授業の詳細ページ表示
+    Route::get('/subjectinfo/{id}','DataBaseControllers\Day@getInfo');
+
+    //教室一覧ページ
+    Route::get('/roomlist','DataBaseControllers\RoomInfo@getRoomList');
+
+    //教室詳細
+    Route::get('/roominfo/{id}','DataBaseControllers\RoomInfo@getRoomInfo');
+
     Route::group(['prefix' => 'teacher'], function(){
         Route::get('/', 'userTeacherController@index');
         Route::get('/detail/{id}', 'userTeacherController@detail');

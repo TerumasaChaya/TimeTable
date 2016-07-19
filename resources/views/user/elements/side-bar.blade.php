@@ -16,7 +16,7 @@
                 </li>
 
                 <li>
-                    <a href="/user/Day">
+                    <a href="/user/day">
                         <i class="fa fa-desktop fa-fw">
                             <div class="icon-bg bg-pink"></div>
                         </i>
@@ -34,11 +34,11 @@
                 </li>
 
                 <li>
-                    <a href="Forms.html">
+                    <a href="/user/roomlist">
                         <i class="fa fa-edit fa-fw">
                             <div class="icon-bg bg-violet"></div>
                         </i>
-                        <span class="menu-title">ここにページのタイトルが入る</span>
+                        <span class="menu-title">教室一覧</span>
                     </a>
                 </li>
 

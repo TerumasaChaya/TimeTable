@@ -60,7 +60,7 @@
                                                        {{$week->period}}
                                                     </td>
                                                     <td>
-                                                        <a href="/user/SubjectInfo/{{$week->id}}">{{$week->subject->subject}}</a>
+                                                        <a Href="/user/subjectinfo/{{$week->id}}">{{$week->subject->subject}}</a>
                                                     </td>
                                                 </tr>
                                             @endforeach
