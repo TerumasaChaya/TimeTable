@@ -34,9 +34,17 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
 
         Route::get('/', 'AdminHomeController@index');
         Route::get('/home','AdminHomeController@index');
+        
+        Route::get('main', function () {
+            return view('admin.main');
+        });
 
         Route::get('excel', function () {
             return view('admin.excel');
+        });
+
+        Route::get('delete', function () {
+            return view('admin.delete');
         });
 
         Route::post('/upload', 'ExcelController@upFile');
@@ -49,6 +57,8 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
 
 
         Route::get('/logout','AdminAuthController@logout');
+
+        Route::post('/delete/', 'ExcelController@delData');
 
     });
 

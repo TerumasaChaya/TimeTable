@@ -16,6 +16,7 @@ use App\repTeacher_table;
 use App\Teacher_table;
 use Illuminate\Support\Facades\Input;
 use Request;
+use Illuminate\Database\Eloquent\Model;
 
 class ExcelController extends Controller
 {
@@ -54,10 +55,35 @@ class ExcelController extends Controller
         }
         return redirect('/admin/home');
     }
+    
+    public function delData(){
+
+        //全レコードを削除
+        $college_table = new college_table();
+        $Taacher_table = new Teacher_table();
+        $class_table = new class_table();
+        $room_table = new room_table();
+        $area_table = new area_table();
+        $subject_table = new subject_table();
+        $repTeacher_table = new repTeacher_table();
+        $classDay_table = new classDay_table();
+
+        $college_table->truncate();
+        $Taacher_table->truncate();
+        $class_table->truncate();
+        $room_table->truncate();
+        $area_table->truncate();
+        $subject_table->truncate();
+        $repTeacher_table->truncate();
+        $classDay_table->truncate();
+
+        return redirect('/admin/home');
+    }
 
     public function getFile()
     {
         ini_set('max_execution_time', 30000);
+
 
         $this->college();
         $this->teacher();
@@ -67,6 +93,7 @@ class ExcelController extends Controller
         $this->subject();
         $this->repteacher();
         $this->classDay();
+
     }
     //所属カレッジ
     private function college(){
@@ -880,44 +907,59 @@ class ExcelController extends Controller
                 }
             }
 
+            //役割------------------------------------------------------------------------------
+            $role = array();
+            foreach ($reader->getActiveSheet()->getRowIterator() as $row) {
+                $flag = 0;
+                foreach ($row->getCellIterator() as $cell) {
+                    if ($flag == 13) {
+                        array_push($role, $cell->getValue());
+                        break;
+                    }
+                    $flag += 1;
+                }
+            }
+
             //var_dump($day,$per);
 
             //クラス曜日テーブルに値を格納-------------------------------------------------------------
             for($i = 1; $i < count($day); $i++){
+
                 $subject_table = new subject_table();
                 $class_table = new class_table();
                 $classDay_table = new classDay_table();
                 $room_table = new room_table();
-                //曜日格納
-                if(isset($day[$i])) {
-                    $classDay_table->day = $day[$i];
-                }
-                //時限格納
-                if(isset($per[$i])) {
-                    $classDay_table->period = $per[$i];
-                }
-                //科目ID格納
-                $s = $subject_table::where("subject",'=',$sub[$i])->first();
-                if($s != null){
-                    $classDay_table->subject_Id = $s->id;
-                    $classDay_table->save();
-                }
-                //教室ID格納
-                $r = $room_table::where("roomName","=",$room[$i])->first();
-                if($r != null){
-                    $classDay_table->room_Id = $r->id;
-                    $classDay_table->save();
-                }
-                //クラスID格納
-                $c = $class_table::where("className",'=',$class[$i])->first();
-                if($c != null){
-                    $classDay_table->class_Id = $c->id;
-                    $classDay_table->save();
-                }
 
-                $classDay_table->save();
+                if($role[$i] == "メイン") {
+                    //曜日格納
+                    if (isset($day[$i])) {
+                        $classDay_table->day = $day[$i];
+                    }
+                    //時限格納
+                    if (isset($per[$i])) {
+                        $classDay_table->period = $per[$i];
+                    }
+                    //科目ID格納
+                    $s = $subject_table::where("subject", '=', $sub[$i])->first();
+                    if ($s != null) {
+                        $classDay_table->subject_Id = $s->id;
+                        $classDay_table->save();
+                    }
+                    //教室ID格納
+                    $r = $room_table::where("roomName", "=", $room[$i])->first();
+                    if ($r != null) {
+                        $classDay_table->room_Id = $r->id;
+                        $classDay_table->save();
+                    }
+                    //クラスID格納
+                    $c = $class_table::where("className", '=', $class[$i])->first();
+                    if ($c != null) {
+                        $classDay_table->class_Id = $c->id;
+                        $classDay_table->save();
+                    }
+                    $classDay_table->save();
+                }
             }
         });
     }
 }
-
