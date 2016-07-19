@@ -26,7 +26,10 @@ class CreateClassDayTable extends Migration
             $table->string('day');
             //時限
             $table->integer('period');
-            
+            //授業担当...メイン
+            $table->string('subrep_m');
+            //授業担当...チューター
+            $table->string('subrep_t');
             $table->timestamps();
         });
     }
