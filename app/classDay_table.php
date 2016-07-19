@@ -10,7 +10,7 @@ class classDay_table extends Model
     protected $table = "classDay";
 
     protected $fillabel = [
-        "id","subject_Id","room_Id","class_Id","day","period"
+        "id","subject_Id","room_Id","class_Id","day","period",'subrep_m','subrep_t'
     ];
     //hasMany設定
     public function subject()

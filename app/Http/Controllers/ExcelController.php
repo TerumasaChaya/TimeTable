@@ -92,7 +92,6 @@ class ExcelController extends Controller
 //        $this->room();
 //        $this->area();
 //        $this->subject();
-//        $this->repteacher();
 //        $this->classDay();
 
     }
@@ -919,7 +918,18 @@ class ExcelController extends Controller
                 }
             }
 
-            //var_dump($day,$per);
+            //授業担当------------------------------------------------------------------------------
+            $subrep = array();
+            foreach ($reader->getActiveSheet()->getRowIterator() as $row) {
+                $flag = 0;
+                foreach ($row->getCellIterator() as $cell) {
+                    if ($flag == 14) {
+                        array_push($subrep, $cell->getValue());
+                        break;
+                    }
+                    $flag += 1;
+                }
+            }
 
             //クラス曜日テーブルに値を格納-------------------------------------------------------------
             for($i = 1; $i < count($day); $i++){
@@ -928,6 +938,7 @@ class ExcelController extends Controller
                 $class_table = new class_table();
                 $classDay_table = new classDay_table();
                 $room_table = new room_table();
+                $Teacher_table = new Teacher_table();
 
                 if($role[$i] == "メイン") {
                     //曜日格納
@@ -942,21 +953,40 @@ class ExcelController extends Controller
                     $s = $subject_table::where("subject", '=', $sub[$i])->first();
                     if ($s != null) {
                         $classDay_table->subject_Id = $s->id;
-                        $classDay_table->save();
                     }
                     //教室ID格納
                     $r = $room_table::where("roomName", "=", $room[$i])->first();
                     if ($r != null) {
                         $classDay_table->room_Id = $r->id;
-                        $classDay_table->save();
                     }
                     //クラスID格納
                     $c = $class_table::where("className", '=', $class[$i])->first();
                     if ($c != null) {
                         $classDay_table->class_Id = $c->id;
-                        $classDay_table->save();
+                    }
+                    //授業担当ID格納
+                    //メインのID
+                    $t = $Teacher_table::where("TeacherName", "=", $subrep[$i])->first();
+                    if ($t != null) {
+                        $classDay_table->subrep_m = $t->id;
                     }
                     $classDay_table->save();
+                }
+            }
+
+            for($i = 1; $i < count($role); $i++){
+                $Teacher_table = new Teacher_table();
+                $classDay_table = new classDay_table();
+                $class_table = new class_table();
+
+                if($role[$i] != "メイン"){
+                    $t = $Teacher_table::where("TeacherName", "=", $subrep[$i])->first();
+                    $c = $class_table::where("className", "=", $class[$i])->first();
+                    $r = $classDay_table::where("class_Id", $c->id)->where("day", $day[$i])->where("period", $per[$i])->first();
+                    if($r){
+                        $r->subrep_t = $t->id;
+                        $r->save();
+                    }
                 }
             }
         });
