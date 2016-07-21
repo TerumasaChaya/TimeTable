@@ -48,8 +48,9 @@
                                     <table class="table table-hover table-bordered">
                                         <thead>
                                         <tr>
-                                            <th>時限</th>
-                                            <th>科目名</th>
+                                            <th class="col-lg-4">時限</th>
+                                            <th class="col-lg-4">科目名</th>
+                                            <th class="col-lg-4">教室</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -61,6 +62,9 @@
                                                     </td>
                                                     <td>
                                                         <a Href="/user/subjectinfo/{{$week->id}}">{{$week->subject->subject}}</a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="/user/roominfo/{{$week->room->id}}}">{{$week->room->roomName}}</a>
                                                     </td>
                                                 </tr>
                                             @endforeach

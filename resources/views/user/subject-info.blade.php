@@ -1,7 +1,7 @@
 @extends('user.elements.basic')
 
 @section('title')
-    {{$subject->subject}}の詳細
+    {{$day->subject->subject}}の詳細
 @endsection
 
 @section('content-header')
@@ -40,24 +40,37 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-grey">
-                                <div class="panel-heading">{{$subject->subject}}</div>
+                                <div class="panel-heading">{{$day->subject->subject}}</div>
                                 <div class="panel-body">
                                     <table class="table table-hover table-bordered">
                                         <tr>
                                             <td width="100" align="center">授業概要</td>
-                                            <td>{{$subject->subjectOverview}}</td>
+                                            <td>{{$day->subject->subjectOverview}}</td>
                                         </tr>
                                         <tr>
                                             <td width="100" align="center">教室名</td>
                                             <td><a href="/user/roominfo/{{$room->id}}}">{{$room->roomName}}</a></td>
                                         </tr>
                                         <tr>
+                                            <td width="100" align="center">担当教師</td>
                                             {{--教師の詳細ページへのリンク--}}
-                                            {{--<a Href="" Target="_blank">--}}
-                                                <td width="100" align="center">担当教師</td>
-                                                <td>{{$room->roomName}}</td>
-                                            {{--</a>--}}
+                                            <td>
+                                                <a href="/user/teacher/detail/{{$day->mainTeacher->id}}">
+                                                    {{$day->mainTeacher->TeacherName}}
+                                                </a>
+                                            </td>
                                         </tr>
+                                        @if($day->subrep_t != "")
+                                            <tr>
+                                                {{--教師の詳細ページへのリンク--}}
+                                                <td width="100" align="center">チューター</td>
+                                                <td>
+                                                    <a href="/user/teacher/detail/{{$day->subTeacher->id}}">
+                                                        {{$day->subTeacher->TeacherName}}
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     </table>
                                 </div>
                             </div>

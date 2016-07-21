@@ -58,6 +58,6 @@ class Day extends Controller
         
 
 //        var_dump($day->room->id);
-        return view('user.subject-info',['subject' => $day->subject],['room' => $day->room]);
+        return view('user.subject-info',['day' => $day],['room' => $day->room]);
     }
 }
