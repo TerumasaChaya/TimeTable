@@ -14,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a id="logo" href="index.html" class="navbar-brand">
+                <a id="logo" href="/home" class="navbar-brand">
                     <span class="fa fa-rocket"></span>
                     <span class="logo-text">CarryCulum</span>
                     <span style="display: none" class="logo-text-icon">µ</span>
