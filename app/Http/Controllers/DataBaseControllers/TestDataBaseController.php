@@ -39,9 +39,9 @@ class TestDataBaseController extends Controller{
 
 
         foreach ($class_cd as $classDay) {
-            $subjectName = $classDay->subject->subject;
-            $roomName = $classDay->room->roomName;
-            $teacherName = "名無し";
+            $subjectName = $classDay;
+            $roomName = $classDay->room;
+            $teacherName = $classDay->mainTeacher;
             //$teacherName = $classDay->subject->repTeacher->first()->Teacher->TeacherName;
 
 
@@ -85,15 +85,11 @@ class TestDataBaseController extends Controller{
             array_push($weekPeriod,array_combine($period,array($wed[$i]['period'],$wed[$i]['subject'],$wed[$i]['class'],$wed[$i]['teacher']))) ;
             array_push($weekPeriod,array_combine($period,array($thu[$i]['period'],$thu[$i]['subject'],$thu[$i]['class'],$thu[$i]['teacher']))) ;
             array_push($weekPeriod,array_combine($period,array($fri[$i]['period'],$fri[$i]['subject'],$fri[$i]['class'],$fri[$i]['teacher']))) ;
-            $this->sortPeriod($mon, $i);
         }
 
         return view('user.week',['weekperiod'=>$weekPeriod]);
 
     }
 
-    function sortPeriod($day,$i){
-
-    }
 
 }

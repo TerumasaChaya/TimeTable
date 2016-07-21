@@ -61,15 +61,9 @@
 
                                         {{-- */$time = 1/* --}}
 
-
                                         {{--*/$kyoukamei = array('国語','算数','理科','社会','体育')/*--}}
                                         {{--*/$roomname = array('3301','3601','3302','2203','1305')/* --}}
                                         {{--*/$teachername = array('t1','t2','t3','t4','t5')/*--}}
-
-
-
-
-
 
                                         {{--*/$a = 0/*--}}
                                         {{--*/$b = 0/*--}}
@@ -82,7 +76,16 @@
 
                                                     @for($kyouka = 1;$kyouka <= 5;$kyouka++)
 
-                                                        <td class="col-xs-2 col-md-2" colspan="2">{{$weekperiod[$a]['subject']}}</td>
+                                                        @if(isset($weekperiod[$a]['subject']->subject->id))
+                                                            <td class="col-xs-2 col-md-2" colspan="2">
+                                                                <a href="/user/subjectinfo/{{$weekperiod[$a]['subject']->id}}">
+                                                                    {{$weekperiod[$a]['subject']->subject->subject}}
+                                                                </a>
+                                                            </td>
+                                                        @else
+                                                            <td class="col-xs-2 col-md-2" colspan="2">{{$weekperiod[$a]['subject']}}</td>
+                                                        @endif
+
                                                         {{--*/$a = $a + 1/*--}}
 
 
@@ -92,8 +95,26 @@
 
                                                 @else
                                                     @for($room = 1;$room <= 5;$room++)
-                                                        <td class="col-xs-1">{{$weekperiod[$b]['class']}}</td>
-                                                        <td class="col-xs-1">{{$weekperiod[$b]['teacher']}}</td>
+                                                        @if(isset($weekperiod[$b]['class']['roomName']))
+                                                            <td class="col-xs-1">
+                                                                <a href="/user/roominfo/{{$weekperiod[$b]['class']['id']}}">
+                                                                    {{$weekperiod[$b]['class']['roomName']}}
+                                                                </a>
+                                                            </td>
+                                                        @else
+                                                            <td class="col-xs-1">{{$weekperiod[$b]['class']}}</td>
+                                                        @endif
+
+                                                        @if(isset($weekperiod[$b]['teacher']['TeacherName']))
+                                                                <td class="col-xs-1">
+                                                                    <a href="teacher/detail/{{$weekperiod[$b]['teacher']['id']}}">
+                                                                        {{$weekperiod[$b]['teacher']['TeacherName']}}
+                                                                    </a>
+                                                                </td>
+                                                         @else
+                                                                <td class="col-xs-1">{{$weekperiod[$b]['teacher']}}</td>
+                                                         @endif
+
                                                         {{--*/$b = $b + 1/*--}}
                                                     @endfor
 
