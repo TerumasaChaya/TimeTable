@@ -9,15 +9,17 @@
         <div class="page-header">
             <div class="page-title mrm">
                 教室詳細</div>
-            <div class="page-subtitle">
-                {{--サブタイトル--}}
-            </div>
         </div>
         <hr />
         <ol class="breadcrumb page-breadcrumb">
             <li>
-                <i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li><a href="#">教室詳細</a>&nbsp;&nbsp;
+                <i class="fa fa-home"></i>&nbsp;
+                <a href="/home">Home</a>&nbsp;&nbsp;
+                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                <a href="/user/roomlist">教室一覧</a>&nbsp;&nbsp;
+                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                <a href="#">教室詳細</a>&nbsp;&nbsp;
+            </li>
         </ol>
         <div class="clearfix">
         </div>
@@ -45,7 +47,13 @@
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <div class="panel panel-grey">
+                                            @if($roomInfo->building == "1号館")
+                                                <div class="panel panel-yellow">
+                                                    @elseif($roomInfo->building == "2号館")
+                                                        <div class="panel panel-green">
+                                                            @elseif($roomInfo->building == "3号館")
+                                                                <div class="panel panel-red">
+                                                                    @endif
                                                 <div class="panel-heading">{{$roomInfo->roomName}}</div>
                                                 <div class="panel-body">
                                                     <table class="table table-hover table-bordered">
