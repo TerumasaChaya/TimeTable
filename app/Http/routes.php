@@ -89,14 +89,6 @@ Route::group(['prefix' => 'user'], function(){
         Route::post('/show', 'attendanceController@show');
     });
 
-    Route::get('week', function () {
-        return view('user.week');
-    });
-
-    Route::get('main', function () {
-        return view('user.main');
-    });
-
     Route::get('/week', 'DataBaseControllers\TestDataBaseController@test');
 
     //1日時間割表示ページ
