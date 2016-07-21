@@ -20,9 +20,16 @@ class Teacher_table extends Model
 
     }
     //hasMany設定
-    public function repTeacher()
+    public function mainTeacher()
     {
-        return $this->hasMany('App\repTeacher_table','teacher_Id');
+        return $this->hasMany('App\classDay_table','id');
 
     }
+
+    public function subTeacher()
+    {
+        return $this->hasMany('App\classDay_table','id');
+
+    }
+
 }

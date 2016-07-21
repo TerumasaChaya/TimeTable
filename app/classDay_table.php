@@ -28,4 +28,17 @@ class classDay_table extends Model
         return $this->belongsTo('App\class_table','class_Id');
 
     }
+
+    public function mainTeacher()
+    {
+        return $this->belongsTo('App\Teacher_table','subrep_m');
+
+    }
+
+    public function subTeacher()
+    {
+        return $this->belongsTo('App\Teacher_table','subrep_t');
+
+    }
+
 }
