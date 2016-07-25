@@ -79,7 +79,6 @@
                                             <label class="col-md-4 control-label">クラス</label>
 
                                             <div class="col-md-6">
-                                                <input type="text" class="form-control" name="email" value="{{ old('class',  Auth::user()->class ) }}">
 
                                                 <select name="class">
                                                     @foreach(\App\class_table::all() as $class )
