@@ -100,7 +100,7 @@
                         <i class="fa fa-bar-chart-o fa-fw">
                             <div class="icon-bg bg-orange"></div>
                         </i>
-                        <span class="menu-title">削除画面</span>
+                        <span class="menu-title">データーベース削除</span>
                     </a>
                 </li>
 
@@ -109,7 +109,7 @@
                         <i class="fa fa-slack fa-fw">
                             <div class="icon-bg bg-green"></div>
                         </i>
-                        <span class="menu-title">アップロード画面</span>
+                        <span class="menu-title">データーベース追加</span>
                     </a>
                 </li>
                 <li>
