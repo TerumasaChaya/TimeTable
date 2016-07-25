@@ -52,7 +52,7 @@ class ExcelController extends Controller
         }else{
             return "error";
         }
-        return redirect('/admin/main');
+        return redirect('/admin/home');
     }
 
     public function getFile()
@@ -61,14 +61,14 @@ class ExcelController extends Controller
 
         //$this->excelData = $this->excelData;
 
-        //$this->college();
-//        $this->teacher();
-//        $this->class_a();
-//        $this->room();
-//        $this->area();
-//        $this->subject();
-//        $this->repteacher();
-//        $this->classDay();
+        $this->college();
+        $this->teacher();
+        $this->class_a();
+        $this->room();
+        $this->area();
+        $this->subject();
+        $this->repteacher();
+        $this->classDay();
     }
     //所属カレッジ
     private function college(){
@@ -242,7 +242,6 @@ class ExcelController extends Controller
                 }
                 $rcnt += 1;
                 $ccnt = 0;
-
             }
 
             //データベース登録
@@ -702,9 +701,110 @@ class ExcelController extends Controller
                 }
             }
 
+            //選択科目割り出し----------------------------------------------------------------------------------------------------------------------------
+
+            //クラス一覧シートの
+            //カレッジ列に[選択]文字列が存在する行の、略称(SGP1A)とカレッジ(ゲーム選択)を保存->$el
+            $reader->setActiveSheetIndex(14);
+            $el = array();
+            $rowflag = 0;
+
+            //行と列
+            $rcnt = 0;
+            $ccnt = 0;
+            foreach ($reader->getActiveSheet()->getRowIterator() as $row) {
+
+                if($rowflag <= 0){
+                    $rowflag += 1;
+                    continue;
+                }
+
+                $flag = 0;
+
+                foreach ($row->getCellIterator() as $cell) {
+
+                    if($flag == 0){
+                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != ""){
+                            $el[$rcnt][$ccnt] = $cell->getValue();
+                        }
+                    }
+
+                    if($flag == 9){
+                        //null、空白ではなく、かつ文字列に[選択]を含む行
+                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != ""
+                            && strpos($cell->getValue(),'選択') !== false) {
+
+                            $el[$rcnt][$ccnt] = $cell->getCalculatedValue();
+                        }else{
+                            $rcnt -= 1;
+                        }
+                        break;
+                    }
+                    $flag += 1;
+                    $ccnt += 1;
+                }
+                $rcnt += 1;
+                $ccnt = 0;
+            }
+            //最終行削除
+            array_pop($el);
+
+            //1次元配列に入れなおし->$search
+            $search = array();
+            $n = 0;
+            foreach ($el as $value){
+                $search[$n] = $value[0];
+                $n += 1;
+            }
+
+            //元データシート読み込み
+            $reader->setActiveSheetIndex(1);
+
+            //空の配列指定
+            $var = array();
+            $rowflag = 0;
+
+            //行と列
+            $rcnt = 0;
+            $ccnt = 0;
+            foreach ($reader->getActiveSheet()->getRowIterator() as $row) {
+
+                $flag = 0;
+
+                foreach ($row->getCellIterator() as $cell) {
+                    if($flag == 2){
+                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != ""
+                            && in_array($cell->getValue(),$search)) {
+//                            $var[$rcnt][$ccnt] = $cell->getValue();
+                        }else{
+                            break;
+                        }
+                    }
+                    if($flag == 7){
+                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != ""){
+                            $var[$rcnt][$ccnt] = $cell->getValue();
+                        }
+                        break;
+                    }
+                    $flag += 1;
+                    $ccnt += 1;
+                }
+                $rcnt += 1;
+                $ccnt = 0;
+            }
+
+            //1次元配列に入れなおし->$target  選択科目の科目名
+            $target = array();
+            $n = 0;
+            foreach ($var as $value){
+                $target[$n] = $value[7];
+                $n += 1;
+            }
+
             //科目テーブルに値を格納-------------------------------------------------------------
             for($i = 1; $i < count($sub); $i++){
                 $subject_table = new subject_table();
+
                 //科目名格納
                 $subject_table->subject = $sub[$i];
                 //分野ID格納
@@ -724,6 +824,10 @@ class ExcelController extends Controller
                 //科目概要格納
                 if(isset($subover[$i])) {
                     $subject_table->subjectOverview = $subover[$i];
+                }
+                if(in_array($sub[$i],$target)){
+                    //科目名格納
+                    $subject_table->elective = true;
                 }
                 $subject_table->save();
             }
@@ -919,5 +1023,82 @@ class ExcelController extends Controller
             }
         });
     }
+
+    //選択科目
+//    private function elective(){
+//        Excel::load($this->excelData, function ($reader) {
+//
+//            //選択科目テーブル作成
+//            //元データシートの読み込み
+//            $reader->setActiveSheetIndex(1);
+//
+//            //空の配列指定
+//            $var = array();
+//            $rowflag = 0;
+//
+//            //行と列
+//            $rcnt = 0;
+//            $ccnt = 0;
+//
+//            foreach ($reader->getActiveSheet()->getRowIterator() as $row) {
+//
+//                if($rowflag <= 0){
+//                    $rowflag += 1;
+//                    continue;
+//                }
+//                $flag = 0;
+//
+//                foreach ($row->getCellIterator() as $cell) {
+//
+//                    if($flag == 7){
+//                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != "") {
+//                            $subject_table = subject_table::where('subject', $cell->getValue())->first();
+//                            $var[$rcnt][$ccnt] = $subject_table->id;
+//                        }
+//                    }
+//
+//                    if($flag == 13){
+//                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != "") {
+//                            $var[$rcnt][$ccnt] = $cell->getValue();
+//                        }
+//                    }
+//
+//                    if($flag == 14){
+//                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != ""){
+//                            $Teacher_table = Teacher_table::where('TeacherName', $cell->getValue())->first();
+//                            $var[$rcnt][$ccnt] = $Teacher_table->id;
+//                        }else{
+//                            $var[$rcnt][$ccnt] = 1;
+//                        }
+//                        break;
+//                    }
+//                    $flag += 1;
+//                    $ccnt += 1;
+//                }
+//                $rcnt += 1;
+//                $ccnt = 0;
+//
+//            }
+//
+//            //データベース登録
+//            foreach ($var as $value){
+//                //var_dump($value[7]);
+//                $repTeacher_table = new repTeacher_table();
+//                if(isset($value[7])){
+//                    $repTeacher_table->subject_Id = $value[7];
+//                }
+//
+//                if(isset($value[13])){
+//                    $repTeacher_table->role = $value[13];
+//                }
+//
+//                if(isset($value[14])){
+//                    $repTeacher_table->teacher_Id = $value[14];
+//                }
+//                $repTeacher_table->save();
+//            }
+//
+//        });
+//    }
 }
 

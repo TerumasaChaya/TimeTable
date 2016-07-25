@@ -112,6 +112,23 @@
                         <span class="menu-title">出席照会</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/user/app">
+                        <i class="fa fa-list">
+                            <div class="icon-bg bg-orange"></div>
+                        </i>
+                        <span class="menu-title">選択科目 確認</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user/elective">
+                        <i class="fa fa-check-square-o">
+                            <div class="icon-bg bg-orange"></div>
+                        </i>
+                        <span class="menu-title">選択科目 申込</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </nav>

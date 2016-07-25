@@ -112,6 +112,14 @@
                         <span class="menu-title">アップロード画面</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/admin/elective">
+                        <i class="fa fa-check">
+                            <div class="icon-bg bg-green"></div>
+                        </i>
+                        <span class="menu-title">選択科目 認証</span>
+                    </a>
+                </li>
 
             </ul>
         </div>
