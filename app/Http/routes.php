@@ -29,7 +29,6 @@ Route::group(['middleware' => 'guest:admin'], function () { //←このグルー
 
 Route::group(['middleware' => 'auth:admin'], function () { //←このグループで括る
 
-
     //アドミン
     Route::group(['prefix' => 'admin'], function(){
 
@@ -40,8 +39,46 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
             return view('admin.main');
         });
 
+        Route::get('/', 'AdminHomeController@index');
+        Route::get('/home','AdminHomeController@index');
+
         Route::get('excel', function () {
             return view('admin.excel');
+        });
+
+        Route::post('/upload', 'ExcelController@upFile');
+
+        Route::get('/register','AdminHomeController@showRegistrationForm');
+        Route::post('/register','AdminHomeController@register');
+
+        Route::get('/profile', 'AdminInfoController@getProfile');
+        Route::post('/profile', 'AdminInfoController@postProfile');
+
+        Route::get('/logout','AdminAuthController@logout');
+
+        //選択科目の認証
+        Route::group(['prefix' => 'elective'], function(){
+
+            Route::get('/', 'ElectiveController@permitSubList');
+
+            //認証待ち 生徒一覧ページ
+            Route::get('/studentList/{id}', 'ElectiveController@studentList');
+
+            //認証確認
+            Route::post('/result', 'ElectiveController@result');
+
+            //認証した生徒の承認フラグを更新(true)
+            Route::post('/update', 'ElectiveController@update');
+
+            //認証済み生徒一覧表示
+            Route::get('/authorized/{id}','ElectiveController@authorized');
+
+            //削除確認
+            Route::post('/delConfirm','ElectiveController@delConfirm');
+
+            //認証した生徒の承認フラグを更新(false)
+            Route::post('/delete','ElectiveController@delete');
+
         });
 
         Route::get('delete', function () {
@@ -61,26 +98,29 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
 
         Route::post('/delete/', 'ExcelController@delData');
 
-    });
-
     Route::group(['prefix' => 'admin/teacher'], function(){
         Route::get('/', 'adminTeacherController@index');
         Route::get('/edit/{id}', 'adminTeacherController@edit');
         Route::post('/upImg', 'adminTeacherController@setTeacherImage');
     });
+
+
+    Route::get('/admin/logout','AdminAuthController@logout');
+
+        Route::group(['prefix' => 'admin/teacher'], function(){
+            Route::get('/', 'adminTeacherController@index');
+            Route::get('/edit/{id}', 'adminTeacherController@edit');
+            Route::post('/upImg', 'adminTeacherController@setTeacherImage');
+        });
+    });
 });
-
-
-Route::get('/admin/logout','AdminAuthController@logout');
 
 Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'image'], function(){
     Route::get('teacherImage/{name}', 'ImageController@teacherImage');
-
 });
-
 
 Route::group(['prefix' => 'user'], function(){
 
@@ -113,8 +153,27 @@ Route::group(['prefix' => 'user'], function(){
         Route::get('/detail/{id}', 'userTeacherController@detail');
 //        Route::post('/upImg', 'userTeacherController@setTeacherImage');
     });
-});
+    
+    //選択科目の申請
+    Route::group(['prefix' => 'elective'], function(){
+        Route::get('/', 'ElectiveController@index');
 
+        //データベース登録確認
+        Route::get('/confirm/{id}', 'ElectiveController@appConfirm');
+
+        //データベース登録ページ
+        Route::get('/insert/{id}', 'ElectiveController@insert');
+
+    });
+
+    //申請済み選択科目
+    Route::group(['prefix' => 'app'], function(){
+        //申し込み済み選択科目 確認
+        Route::get('/', 'ElectiveController@appList');
+        Route::post('/appDelConfirm', 'ElectiveController@appDelConfirm');
+    });
+
+});
 
 
 Route::group(['middleware' => 'guest:user'], function() {
@@ -124,11 +183,17 @@ Route::group(['middleware' => 'guest:user'], function() {
     Route::post('/password/email', 'Auth\PasswordController@sendResetLinkEmail');
     Route::post('/password/reset', 'Auth\PasswordController@reset');
     Route::get('/password/reset/{token?}', 'Auth\PasswordController@showResetForm');
+
+});
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/profile', 'UserInfoController@getProfile');
+    Route::post('/profile', 'UserInfoController@postProfile');
+
 });
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/profile', 'UserInfoController@getProfile');
     Route::post('/profile', 'UserInfoController@postProfile');
 });
-
 

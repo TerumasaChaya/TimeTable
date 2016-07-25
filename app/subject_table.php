@@ -11,7 +11,7 @@ class subject_table extends Model
     //primaryKeyの変更
     protected $primaryKey = "id";
     protected $fillable = [
-        "id","subject","area_Id","usePC","useHard","part","credits","role","firstLecture","firstExercises","secondLecture","secondExercises","subjectOverview"
+        "id","subject","area_Id","usePC","useHard","part","credits","role","firstLecture","firstExercises","secondLecture","secondExercises","subjectOverview","elective"
     ];
 
     //hasMany設定
