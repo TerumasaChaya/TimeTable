@@ -30,5 +30,9 @@ class subject_table extends Model
     {
         return $this->hasMany('App\classDay_table','subject_Id');
     }
+    public function elective()
+    {
+        return $this->hasMany('elective_table','subject_Id');
+    }
 
 }

@@ -15,4 +15,9 @@ class elective_table extends Model
     protected $fillable = [
         "id",'user_Id','subject_Id','permit',"created_at","updated_at"
     ];
+
+    public function subject()
+    {
+        return $this->belongsTo('App\subject_table','subject_Id');
+    }
 }
