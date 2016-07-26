@@ -39,11 +39,11 @@ class Day extends Controller
         $weekDay = classDay_table::distinct()
             ->where('class_Id','=',$classId)
             ->where('day','=', $w)
-            ->groupBy('subject_Id')
+            ->groupBy('period')
             ->orderBy('period', 'ASC')
             ->distinct()
             ->get();
-        
+
 //        var_dump($w)
 //        var_dump($weekDay);
         //ビューにテーブルのデータ送信

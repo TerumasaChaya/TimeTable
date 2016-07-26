@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
             'name' => 'chihaya',
             'email' => 'chihaya@namco.com',
             'password' => bcrypt('chihaya'),
-            'class' => 2,
+            'class' => 63,
         ]);
     }
 }

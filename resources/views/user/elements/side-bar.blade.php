@@ -8,7 +8,7 @@
                 <div class="clearfix"></div>
                 <li>
                     <a href="/user/week">
-                        <i class="fa fa-tachometer fa-fw">
+                        <i class="fa fa-calendar fa-fw">
                             <div class="icon-bg bg-orange"></div>
                         </i>
                         <span class="menu-title">今週の時間割</span>
@@ -17,7 +17,7 @@
 
                 <li>
                     <a href="/user/day">
-                        <i class="fa fa-desktop fa-fw">
+                        <i class="fa fa-calendar-o fa-fw">
                             <div class="icon-bg bg-pink"></div>
                         </i>
                         <span class="menu-title">今日の時間割</span>
@@ -26,7 +26,7 @@
 
                 <li>
                     <a href="/user/teacher">
-                        <i class="fa fa-send-o fa-fw">
+                        <i class="fa fa-users fa-fw">
                             <div class="icon-bg bg-green"></div>
                         </i>
                         <span class="menu-title">教師一覧</span>
@@ -35,7 +35,7 @@
 
                 <li>
                     <a href="/user/roomlist">
-                        <i class="fa fa-edit fa-fw">
+                        <i class="fa fa-building-o fa-fw">
                             <div class="icon-bg bg-violet"></div>
                         </i>
                         <span class="menu-title">教室一覧</span>
@@ -106,7 +106,7 @@
 
                 <li>
                     <a href="/user/attendance">
-                        <i class="fa fa-slack fa-fw">
+                        <i class="fa fa-list-alt fa-fw">
                             <div class="icon-bg bg-green"></div>
                         </i>
                         <span class="menu-title">出席照会</span>
@@ -114,7 +114,7 @@
                 </li>
                 <li>
                     <a href="/user/app">
-                        <i class="fa fa-list">
+                        <i class="fa fa-list fa-fw">
                             <div class="icon-bg bg-orange"></div>
                         </i>
                         <span class="menu-title">選択科目 確認</span>
@@ -122,7 +122,7 @@
                 </li>
                 <li>
                     <a href="/user/elective">
-                        <i class="fa fa-check-square-o">
+                        <i class="fa fa-check-square-o fa-fw">
                             <div class="icon-bg bg-orange"></div>
                         </i>
                         <span class="menu-title">選択科目 申込</span>

@@ -64,14 +64,13 @@
                             <div class="panel-body">
                                 <table border="0">
                                     <tr>
-                                        <td colspan="2"><div class="alert alert-info"><b>実行ボタンをクリックすると当サイトの元となるデータを格納したデータベースを削除します</b></div></td>
+                                        <td><div class="alert alert-info"><b>実行ボタンをクリックすると当サイトの元となるデータを格納したデータベースを削除します</b></div></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><div class="alert alert-danger"><b>削除が完了すると自動でページが切り替わります</b></div></td>
+                                        <td><div class="alert alert-danger"><b>削除が完了すると自動でページが切り替わります</b></div></td>
                                     </tr>
                                     <tr>
-                                        <td width="70%"></td>
-                                    <td width="30%">
+                                    <td align="right">
                                         <form action="/admin/delete" method="post" enctype="multipart/form-data" class="col-lg-8">
                                         <input type="submit" value="実行" class="btn btn-dark"/>
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />

@@ -26,7 +26,7 @@
 
                 <li>
                     <a href="/admin/teacher">
-                        <i class="fa fa-send-o fa-fw">
+                        <i class="fa fa-users fa-fw">
                             <div class="icon-bg bg-green"></div>
                         </i>
                         <span class="menu-title">教師一覧</span>
@@ -97,7 +97,7 @@
 
                 <li>
                     <a href="/admin/delete">
-                        <i class="fa fa-bar-chart-o fa-fw">
+                        <i class="fa fa-trash-o fa-fw">
                             <div class="icon-bg bg-orange"></div>
                         </i>
                         <span class="menu-title">データーベース削除</span>
@@ -106,7 +106,7 @@
 
                 <li>
                     <a href="/admin/excel">
-                        <i class="fa fa-slack fa-fw">
+                        <i class="fa fa-plus fa-fw">
                             <div class="icon-bg bg-green"></div>
                         </i>
                         <span class="menu-title">データーベース追加</span>
