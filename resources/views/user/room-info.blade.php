@@ -15,8 +15,6 @@
         <ol class="breadcrumb page-breadcrumb">
             <li>
                 <i class="fa fa-home"></i>&nbsp;
-                <a href="/home">Home</a>&nbsp;&nbsp;
-                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
                 <a href="/user/roomlist">教室一覧</a>&nbsp;&nbsp;
                 <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
                 <a href="#">教室詳細</a>&nbsp;&nbsp;

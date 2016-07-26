@@ -116,65 +116,64 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
 });
 
 Route::auth();
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'DataBaseControllers\TestDataBaseController@test');
 
 Route::group(['prefix' => 'image'], function(){
     Route::get('teacherImage/{name}', 'ImageController@teacherImage');
 });
 
-Route::group(['prefix' => 'user'], function(){
+Route::group(['middleware' => 'auth'], function () {
 
-    Route::group(['prefix' => 'attendance'], function(){
-        Route::get('/', 'attendanceController@index');
-        Route::post('/show', 'attendanceController@show');
-    });
+    Route::group(['prefix' => 'user'], function () {
 
-    Route::get('/week', 'DataBaseControllers\TestDataBaseController@test');
+        Route::group(['prefix' => 'attendance'], function () {
+            Route::get('/', 'attendanceController@index');
+            Route::post('/show', 'attendanceController@show');
+        });
 
-    //1日時間割表示ページ
-    Route::get('/Day','Day@getDay');
+        Route::get('/week', 'DataBaseControllers\TestDataBaseController@test');
 
-    //授業の詳細ページ表示
-    Route::get('/SubjectInfo/{id}','DataBaseControllers\Day@getInfo');
+        //授業の詳細ページ表示
+        Route::get('/SubjectInfo/{id}', 'DataBaseControllers\Day@getInfo');
 
-    Route::get('/day','DataBaseControllers\Day@getDay');
+        Route::get('/day', 'DataBaseControllers\Day@getDay');
 
-    //授業の詳細ページ表示
-    Route::get('/subjectinfo/{id}','DataBaseControllers\Day@getInfo');
+        //授業の詳細ページ表示
+        Route::get('/subjectinfo/{id}', 'DataBaseControllers\Day@getInfo');
 
-    //教室一覧ページ
-    Route::get('/roomlist','DataBaseControllers\RoomInfo@getRoomList');
+        //教室一覧ページ
+        Route::get('/roomlist', 'DataBaseControllers\RoomInfo@getRoomList');
 
-    //教室詳細
-    Route::get('/roominfo/{id}','DataBaseControllers\RoomInfo@getRoomInfo');
+        //教室詳細
+        Route::get('/roominfo/{id}', 'DataBaseControllers\RoomInfo@getRoomInfo');
 
-    Route::group(['prefix' => 'teacher'], function(){
-        Route::get('/', 'userTeacherController@index');
-        Route::get('/detail/{id}', 'userTeacherController@detail');
+        Route::group(['prefix' => 'teacher'], function () {
+            Route::get('/', 'userTeacherController@index');
+            Route::get('/detail/{id}', 'userTeacherController@detail');
 //        Route::post('/upImg', 'userTeacherController@setTeacherImage');
+        });
+
+        //選択科目の申請
+        Route::group(['prefix' => 'elective'], function () {
+            Route::get('/', 'ElectiveController@index');
+
+            //データベース登録確認
+            Route::get('/confirm/{id}', 'ElectiveController@appConfirm');
+
+            //データベース登録ページ
+            Route::get('/insert/{id}', 'ElectiveController@insert');
+
+        });
+
+        //申請済み選択科目
+        Route::group(['prefix' => 'app'], function () {
+            //申し込み済み選択科目 確認
+            Route::get('/', 'ElectiveController@appList');
+            Route::post('/appDelConfirm', 'ElectiveController@appDelConfirm');
+        });
+
     });
-    
-    //選択科目の申請
-    Route::group(['prefix' => 'elective'], function(){
-        Route::get('/', 'ElectiveController@index');
-
-        //データベース登録確認
-        Route::get('/confirm/{id}', 'ElectiveController@appConfirm');
-
-        //データベース登録ページ
-        Route::get('/insert/{id}', 'ElectiveController@insert');
-
-    });
-
-    //申請済み選択科目
-    Route::group(['prefix' => 'app'], function(){
-        //申し込み済み選択科目 確認
-        Route::get('/', 'ElectiveController@appList');
-        Route::post('/appDelConfirm', 'ElectiveController@appDelConfirm');
-    });
-
 });
-
 
 Route::group(['middleware' => 'guest:user'], function() {
     Route::get('/login', 'Auth\AuthController@showLoginForm');

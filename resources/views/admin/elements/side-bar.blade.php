@@ -8,11 +8,11 @@
                 <div class="clearfix"></div>
 
                 <li>
-                    <a href="/admin/teacher">
-                        <i class="fa fa-users fa-fw">
+                    <a href="/admin/excel">
+                        <i class="fa fa-plus fa-fw">
                             <div class="icon-bg bg-green"></div>
                         </i>
-                        <span class="menu-title">教師一覧</span>
+                        <span class="menu-title">時間割データーベース追加</span>
                     </a>
                 </li>
                 <li>
@@ -20,16 +20,15 @@
                         <i class="fa fa-trash-o fa-fw">
                             <div class="icon-bg bg-orange"></div>
                         </i>
-                        <span class="menu-title">データーベース削除</span>
+                        <span class="menu-title">時間割データーベース削除</span>
                     </a>
                 </li>
-
                 <li>
-                    <a href="/admin/excel">
-                        <i class="fa fa-plus fa-fw">
+                    <a href="/admin/teacher">
+                        <i class="fa fa-users fa-fw">
                             <div class="icon-bg bg-green"></div>
                         </i>
-                        <span class="menu-title">データーベース追加</span>
+                        <span class="menu-title">教師一覧</span>
                     </a>
                 </li>
                 <li>

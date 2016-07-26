@@ -27,16 +27,16 @@ class ExcelController extends Controller
     {
         //既存Excelファイル削除
 
-        $dir = public_path(). "/xlsData/";
+        $dir = public_path() . "/xlsData/";
 
-        if ( $dirHandle = opendir ($dir)) {
-            while ( false !== ( $fileName = readdir ( $dirHandle ) ) ) {
-                if ( $fileName != "." && $fileName != ".." ) {
+        if ($dirHandle = opendir($dir)) {
+            while (false !== ($fileName = readdir($dirHandle))) {
+                if ($fileName != "." && $fileName != "..") {
                     //var_dump("deleted");
-                    unlink ( $dir.$fileName );
+                    unlink($dir . $fileName);
                 }
             }
-            closedir ( $dirHandle );
+            closedir($dirHandle);
         }
 
         //public\xlsData にアップされたExcelファイルを保存
@@ -46,18 +46,19 @@ class ExcelController extends Controller
 
         $move = $file->move($dir, $name);
 
-        $this->excelData = "xlsData/".$name;
+        $this->excelData = "xlsData/" . $name;
 
-        if($move){
+        if ($move) {
             //return "uploaded";
             $this->getFile();
-        }else{
+        } else {
             return "error";
         }
-        return redirect('/admin/home');
+        return redirect('/admin/excel');
     }
-    
-    public function delData(){
+
+    public function delData()
+    {
 
         //全レコードを削除
         $college_table = new college_table();
@@ -95,8 +96,10 @@ class ExcelController extends Controller
         $this->classDay();
 
     }
+
     //所属カレッジ
-    private function college(){
+    private function college()
+    {
 
         Excel::load($this->excelData, function ($reader) {
 
@@ -137,9 +140,9 @@ class ExcelController extends Controller
             $var = array_values($var);
 
             //データベース登録
-            foreach ($var as $value){
+            foreach ($var as $value) {
 
-                if($rowflag == true){
+                if ($rowflag == true) {
                     $college_table = new college_table();
                     $college_table->collegeName = $value;
                     $college_table->save();
@@ -152,7 +155,8 @@ class ExcelController extends Controller
     }
 
     //教師
-    private function teacher(){
+    private function teacher()
+    {
         Excel::load($this->excelData, function ($reader) {
 
             //教師テーブル作成
@@ -169,7 +173,7 @@ class ExcelController extends Controller
 
             foreach ($reader->getActiveSheet()->getRowIterator() as $row) {
 
-                if($rowflag == false){
+                if ($rowflag == false) {
                     $rowflag = true;
                     continue;
                 }
@@ -178,18 +182,18 @@ class ExcelController extends Controller
 
                 foreach ($row->getCellIterator() as $cell) {
 
-                    if($flag == 0){
-                        if(preg_replace("/( |　)/", "", $cell->getValue()) != "") {
+                    if ($flag == 0) {
+                        if (preg_replace("/( |　)/", "", $cell->getValue()) != "") {
                             $var[$rcnt][$ccnt] = $cell->getValue();
                         }
                     }
-                    if($flag == 1){
+                    if ($flag == 1) {
                         //var_dump($cell->getValue());
                         $college_table = college_table::where('collegeName', $cell->getValue())->first();
                         $var[$rcnt][$ccnt] = $college_table->id;
                     }
-                    if($flag == 3){
-                        if(preg_replace("/( |　)/", "", $cell->getValue()) != "") {
+                    if ($flag == 3) {
+                        if (preg_replace("/( |　)/", "", $cell->getValue()) != "") {
                             $var[$rcnt][$ccnt] = $cell->getValue();
                         }
                         break;
@@ -202,13 +206,13 @@ class ExcelController extends Controller
             }
 
             //データベース登録
-            foreach ($var as $value){
+            foreach ($var as $value) {
                 $Teacher_table = new Teacher_table();
                 $Teacher_table->TeacherName = $value[0];
                 $Teacher_table->assignCollege_Id = $value[1];
                 $Teacher_table->fileName = "default.jpg";
-                $Teacher_table->comment = "こんにちは". $value[0]."です！よろしくね。";
-                if(isset($value[3])){
+                $Teacher_table->comment = "こんにちは" . $value[0] . "です！よろしくね。";
+                if (isset($value[3])) {
                     $Teacher_table->hireForm = $value[3];
                 }
                 $Teacher_table->save();
@@ -217,7 +221,8 @@ class ExcelController extends Controller
     }
 
     //担当教師
-    private function repteacher(){
+    private function repteacher()
+    {
         Excel::load($this->excelData, function ($reader) {
 
             //担当教師テーブル作成
@@ -234,7 +239,7 @@ class ExcelController extends Controller
 
             foreach ($reader->getActiveSheet()->getRowIterator() as $row) {
 
-                if($rowflag <= 0){
+                if ($rowflag <= 0) {
                     $rowflag += 1;
                     continue;
                 }
@@ -242,24 +247,24 @@ class ExcelController extends Controller
 
                 foreach ($row->getCellIterator() as $cell) {
 
-                    if($flag == 7){
-                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != "") {
+                    if ($flag == 7) {
+                        if ($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != "") {
                             $subject_table = subject_table::where('subject', $cell->getValue())->first();
                             $var[$rcnt][$ccnt] = $subject_table->id;
                         }
                     }
 
-                    if($flag == 13){
-                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != "") {
+                    if ($flag == 13) {
+                        if ($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != "") {
                             $var[$rcnt][$ccnt] = $cell->getValue();
                         }
                     }
 
-                    if($flag == 14){
-                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != ""){
+                    if ($flag == 14) {
+                        if ($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != "") {
                             $Teacher_table = Teacher_table::where('TeacherName', $cell->getValue())->first();
                             $var[$rcnt][$ccnt] = $Teacher_table->id;
-                        }else{
+                        } else {
                             $var[$rcnt][$ccnt] = 1;
                         }
                         break;
@@ -272,18 +277,18 @@ class ExcelController extends Controller
             }
 
             //データベース登録
-            foreach ($var as $value){
-                    //var_dump($value[7]);
+            foreach ($var as $value) {
+                //var_dump($value[7]);
                 $repTeacher_table = new repTeacher_table();
-                if(isset($value[7])){
+                if (isset($value[7])) {
                     $repTeacher_table->subject_Id = $value[7];
                 }
 
-                if(isset($value[13])){
+                if (isset($value[13])) {
                     $repTeacher_table->role = $value[13];
                 }
 
-                if(isset($value[14])){
+                if (isset($value[14])) {
                     $repTeacher_table->teacher_Id = $value[14];
                 }
                 $repTeacher_table->save();
@@ -293,7 +298,8 @@ class ExcelController extends Controller
     }
 
     //クラス
-    private function class_a(){
+    private function class_a()
+    {
         Excel::load($this->excelData, function ($reader) {
 
             //クラステーブル作成
@@ -395,7 +401,7 @@ class ExcelController extends Controller
                 $flag = 0;
                 foreach ($row->getCellIterator() as $cell) {
                     if ($flag == 8) {
-                            array_push($name, $cell->getValue());
+                        array_push($name, $cell->getValue());
                         break;
                     }
                     $flag += 1;
@@ -403,32 +409,32 @@ class ExcelController extends Controller
             }
 
             //クラステーブルに値を格納-------------------------------------------------------------
-            for($i = 1; $i < count($name); $i++){
+            for ($i = 1; $i < count($name); $i++) {
                 $class_table = new class_table();
                 //クラス名格納
                 $class_table->className = $cn[$i];
                 //学年格納
-                if(isset($gr[$i])) {
+                if (isset($gr[$i])) {
                     $class_table->grade = $gr[$i];
                 }
                 //学科名格納
-                if(isset($dp[$i])) {
+                if (isset($dp[$i])) {
                     $class_table->dept = $dp[$i];
                 }
                 //コース名
-                if(isset($co[$i])) {
+                if (isset($co[$i])) {
                     $class_table->course = $co[$i];
                 }
                 //カレッジ
                 $class_table->college = $cl[$i];
                 //クラス人数
-                if(isset($cs[$i])) {
+                if (isset($cs[$i])) {
                     $class_table->person = $cs[$i];
                 }
                 //教師ID格納
                 $Teacher_table = new Teacher_table();
                 $r = $Teacher_table::where("TeacherName", '=', $name[$i])->first();
-                if($r != null){
+                if ($r != null) {
                     $class_table->teacher_Id = $r->id;
                 }
 
@@ -438,7 +444,8 @@ class ExcelController extends Controller
     }
 
     //教室
-    private function room(){
+    private function room()
+    {
         Excel::load($this->excelData, function ($reader) {
 
             //教室テーブル作成
@@ -520,22 +527,22 @@ class ExcelController extends Controller
             }
 
             //クラステーブルに値を格納-------------------------------------------------------------
-            for($i = 1; $i < count($rn); $i++){
+            for ($i = 1; $i < count($rn); $i++) {
                 $room_table = new room_table();
                 //教室名格納
                 $room_table->roomName = $rn[$i];
                 //教室種別格納
                 $room_table->roomKind = $rk[$i];
                 //教室定員格納
-                if(isset($rc[$i])) {
+                if (isset($rc[$i])) {
                     $room_table->roomCapa = $rc[$i];
                 }
                 //号館名格納
-                if(isset($bd[$i])) {
+                if (isset($bd[$i])) {
                     $room_table->building = $bd[$i];
                 }
                 //階名格納
-                if(isset($fl[$i])) {
+                if (isset($fl[$i])) {
                     $room_table->Floor = $fl[$i];
                 }
                 $room_table->save();
@@ -545,7 +552,8 @@ class ExcelController extends Controller
     }
 
     //分野
-    private function area(){
+    private function area()
+    {
         Excel::load($this->excelData, function ($reader) {
 
             //分野テーブル
@@ -557,8 +565,8 @@ class ExcelController extends Controller
             foreach ($reader->getActiveSheet()->getRowIterator() as $row) {
                 $flag = 0;
                 foreach ($row->getCellIterator() as $cell) {
-                    if($flag == 2){
-                        if(preg_replace("/( |　)/", "", $cell->getValue()) != "") {
+                    if ($flag == 2) {
+                        if (preg_replace("/( |　)/", "", $cell->getValue()) != "") {
                             array_push($area, $cell->getValue());
                         }
                         break;
@@ -570,7 +578,7 @@ class ExcelController extends Controller
             $area = array_unique($area);
             $area = array_values($area);
 
-            for($i = 1; $i < count($area); $i++){
+            for ($i = 1; $i < count($area); $i++) {
                 $area_table = new area_table();
                 $area_table->Area = $area[$i];
                 $area_table->save();
@@ -580,7 +588,8 @@ class ExcelController extends Controller
     }
 
     //科目
-    private function subject(){
+    private function subject()
+    {
         Excel::load($this->excelData, function ($reader) {
 
             //科目テーブル作成
@@ -606,14 +615,14 @@ class ExcelController extends Controller
             foreach ($reader->getActiveSheet()->getRowIterator() as $row) {
                 $flag = 0;
                 foreach ($row->getCellIterator() as $cell) {
-                    if($flag == 2){
-                        if($cell->getValue() == "分野"){
+                    if ($flag == 2) {
+                        if ($cell->getValue() == "分野") {
                             break;
                         }
-                        if(preg_replace("/( |　)/", "", $cell->getValue()) != "") {
+                        if (preg_replace("/( |　)/", "", $cell->getValue()) != "") {
                             $area_table = new area_table();
                             $r = $area_table::where("Area", '=', $cell->getValue())->first();
-                            if($r != null) {
+                            if ($r != null) {
                                 array_push($areaId, $r->id);
                             }
                         }
@@ -719,9 +728,7 @@ class ExcelController extends Controller
                 $flag = 0;
                 foreach ($row->getCellIterator() as $cell) {
                     if ($flag == 13) {
-                        if (preg_replace("/( |　)/", "", $cell->getValue()) != "") {
-                            array_push($subover, $cell->getValue());
-                        }
+                        array_push($subover, $cell->getValue());
                         break;
                     }
                     $flag += 1;
@@ -741,7 +748,7 @@ class ExcelController extends Controller
             $ccnt = 0;
             foreach ($reader->getActiveSheet()->getRowIterator() as $row) {
 
-                if($rowflag <= 0){
+                if ($rowflag <= 0) {
                     $rowflag += 1;
                     continue;
                 }
@@ -750,19 +757,20 @@ class ExcelController extends Controller
 
                 foreach ($row->getCellIterator() as $cell) {
 
-                    if($flag == 0){
-                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != ""){
+                    if ($flag == 0) {
+                        if ($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != "") {
                             $el[$rcnt][$ccnt] = $cell->getValue();
                         }
                     }
 
-                    if($flag == 9){
+                    if ($flag == 9) {
                         //null、空白ではなく、かつ文字列に[選択]を含む行
-                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != ""
-                            && strpos($cell->getValue(),'選択') !== false) {
+                        if ($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != ""
+                            && strpos($cell->getValue(), '選択') !== false
+                        ) {
 
                             $el[$rcnt][$ccnt] = $cell->getCalculatedValue();
-                        }else{
+                        } else {
                             $rcnt -= 1;
                         }
                         break;
@@ -779,7 +787,7 @@ class ExcelController extends Controller
             //1次元配列に入れなおし->$search
             $search = array();
             $n = 0;
-            foreach ($el as $value){
+            foreach ($el as $value) {
                 $search[$n] = $value[0];
                 $n += 1;
             }
@@ -799,16 +807,17 @@ class ExcelController extends Controller
                 $flag = 0;
 
                 foreach ($row->getCellIterator() as $cell) {
-                    if($flag == 2){
-                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != ""
-                            && in_array($cell->getValue(),$search)) {
+                    if ($flag == 2) {
+                        if ($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != ""
+                            && in_array($cell->getValue(), $search)
+                        ) {
 //                            $var[$rcnt][$ccnt] = $cell->getValue();
-                        }else{
+                        } else {
                             break;
                         }
                     }
-                    if($flag == 7){
-                        if($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != ""){
+                    if ($flag == 7) {
+                        if ($cell->getValue() != null && preg_replace("/( |　)/", "", $cell->getValue()) != "") {
                             $var[$rcnt][$ccnt] = $cell->getValue();
                         }
                         break;
@@ -823,13 +832,13 @@ class ExcelController extends Controller
             //1次元配列に入れなおし->$target  選択科目の科目名
             $target = array();
             $n = 0;
-            foreach ($var as $value){
+            foreach ($var as $value) {
                 $target[$n] = $value[7];
                 $n += 1;
             }
 
             //科目テーブルに値を格納-------------------------------------------------------------
-            for($i = 1; $i < count($sub); $i++){
+            for ($i = 1; $i < count($sub); $i++) {
                 $subject_table = new subject_table();
 
                 //科目名格納
@@ -849,10 +858,10 @@ class ExcelController extends Controller
                 //後期演習数格納...Excelデータでは講実！！
                 $subject_table->secondExercises = $se[$i];
                 //科目概要格納
-                if(isset($subover[$i])) {
+                if (isset($subover[$i])) {
                     $subject_table->subjectOverview = $subover[$i];
                 }
-                if(in_array($sub[$i],$target)){
+                if (in_array($sub[$i], $target)) {
                     //科目名格納
                     $subject_table->elective = true;
                 }
@@ -892,9 +901,9 @@ class ExcelController extends Controller
             //使用ハードが存在する行を検索し、ヒットした科目名を配列に格納
             $i = 0;
             $hardSubHit = array();
-            foreach($hard as $hardHit){
-                if($hardHit != ""){
-                    array_push($hardSubHit,$hardSub[$i]);
+            foreach ($hard as $hardHit) {
+                if ($hardHit != "") {
+                    array_push($hardSubHit, $hardSub[$i]);
                 }
                 $i += 1;
             }
@@ -915,10 +924,10 @@ class ExcelController extends Controller
 
             $i = 0;
             //科目テーブルの使用ハード名を格納
-            foreach($hardSubHit as $value){
+            foreach ($hardSubHit as $value) {
                 $subject_table = new subject_table();
-                $r = $subject_table::where("subject",'=',$value)->first();
-                if($r != null){
+                $r = $subject_table::where("subject", '=', $value)->first();
+                if ($r != null) {
                     $std = $hard[$i];
                     $r->useHard = $std;
                     $r->save();
@@ -929,7 +938,8 @@ class ExcelController extends Controller
     }
 
     //クラス曜日
-    private function classDay(){
+    private function classDay()
+    {
         Excel::load($this->excelData, function ($reader) {
 
             //科目テーブル作成
@@ -969,9 +979,9 @@ class ExcelController extends Controller
                 $flag = 0;
                 foreach ($row->getCellIterator() as $cell) {
                     if ($flag == 15) {
-                        if(strlen($cell->getValue()) > 7){
+                        if (strlen($cell->getValue()) > 7) {
                             array_push($day, "");
-                        }else{
+                        } else {
                             array_push($day, $cell->getValue());
                         }
                         break;
@@ -987,9 +997,9 @@ class ExcelController extends Controller
                 $i = 0;
                 foreach ($row->getCellIterator() as $cell) {
                     if ($flag == 17) {
-                        if($day[$i] == ""){
+                        if ($day[$i] == "") {
                             array_push($room, "");
-                        }else{
+                        } else {
                             array_push($room, $cell->getValue());
                         }
                         break;
@@ -1038,7 +1048,7 @@ class ExcelController extends Controller
             }
 
             //クラス曜日テーブルに値を格納-------------------------------------------------------------
-            for($i = 1; $i < count($day); $i++){
+            for ($i = 1; $i < count($day); $i++) {
 
                 $subject_table = new subject_table();
                 $class_table = new class_table();
@@ -1046,7 +1056,7 @@ class ExcelController extends Controller
                 $room_table = new room_table();
                 $Teacher_table = new Teacher_table();
 
-                if($role[$i] == "メイン") {
+                if ($role[$i] == "メイン") {
                     //曜日格納
                     if (isset($day[$i])) {
                         $classDay_table->day = $day[$i];
@@ -1080,16 +1090,16 @@ class ExcelController extends Controller
                 }
             }
 
-            for($i = 1; $i < count($role); $i++){
+            for ($i = 1; $i < count($role); $i++) {
                 $Teacher_table = new Teacher_table();
                 $classDay_table = new classDay_table();
                 $class_table = new class_table();
 
-                if($role[$i] != "メイン"){
+                if ($role[$i] != "メイン") {
                     $t = $Teacher_table::where("TeacherName", "=", $subrep[$i])->first();
                     $c = $class_table::where("className", "=", $class[$i])->first();
                     $r = $classDay_table::where("class_Id", $c->id)->where("day", $day[$i])->where("period", $per[$i])->first();
-                    if($r){
+                    if ($r) {
                         $r->subrep_t = $t->id;
                         $r->save();
                     }

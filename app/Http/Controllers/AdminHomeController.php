@@ -35,7 +35,7 @@ class AdminHomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home-new');
+        return view('admin.excel');
     }
 
     public function showRegistrationForm(){

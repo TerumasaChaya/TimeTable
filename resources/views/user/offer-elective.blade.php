@@ -14,9 +14,7 @@
         <ol class="breadcrumb page-breadcrumb">
             <li>
                 <i class="fa fa-home"></i>&nbsp;
-                <a href="index.html">Home</a>&nbsp;&nbsp;
-                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
-                <a href="#">選択科目 一覧</a>&nbsp;&nbsp;
+                <a href="/user/elective">選択科目 一覧</a>&nbsp;&nbsp;
             </li>
         </ol>
         <div class="clearfix">

@@ -14,7 +14,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a id="logo" href="/home" class="navbar-brand">
+                <a id="logo" href="/user/week" class="navbar-brand">
                     <span class="fa fa-rocket"></span>
                     <span class="logo-text">CarryCulum</span>
                     <span style="display: none" class="logo-text-icon">µ</span>
@@ -34,26 +34,6 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu dropdown-user pull-right">
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-user"></i>
-                                    My Profile
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-calendar"></i>
-                                    My Calendar
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-envelope"></i>
-                                    My Inbox
-                                    <span class="badge badge-danger">3</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
                             <li>
                                 <a href="{{ url('/profile') }}">
                                     <i class="fa fa-key"></i>
