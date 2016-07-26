@@ -38,27 +38,28 @@
 
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="panel">
-                            <div class="panel-body"><h4>申請済み選択科目</h4>
+                        <div class="panel panel-pink">
+                            <div class="panel-heading">申請済み選択科目</div>
+                                <div class="panel-body">
 
-                                {{--<form action="/user/app/appDelConfirm" method="post">--}}
-                                    {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                                    {{--<form action="/user/app/appDelConfirm" method="post">--}}
+                                        {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
 
-                                    <table border="1">
-                                        <tr>
-                                            <th class="text-center">科目名</th>
-                                            <th class="text-center">承認状況</th>
-                                        </tr>
-                                        @foreach($appEl as $value)
+                                        <table border="1">
                                             <tr>
-                                                <td class="text-center">{{$value->subject}}</td>
-                                                <td class="text-center">{{$permit[$value->id]}}</td>
+                                                <th class="text-center alert alert-success">科目名</th>
+                                                <th class="text-center alert alert-success">承認状況</th>
                                             </tr>
-                                        @endforeach
-                                    </table>
-                                    {{--<input type="submit" value="戻る">--}}
-                                {{--</form>--}}
-
+                                            @foreach($appEl as $value)
+                                                <tr>
+                                                    <td class="text-center alert alert-warning">{{$value->subject}}</td>
+                                                    <td class="text-center alert alert-warning">{{$permit[$value->id]}}</td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                        {{--<input type="submit" value="戻る">--}}
+                                    {{--</form>--}}
+                                </div>
                             </div>
                         </div>
                     </div>

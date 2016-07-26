@@ -8,17 +8,20 @@
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header">
             <div class="page-title mrm">
-                選択科目 一覧</div>
+                選択科目一覧</div>
             {{--<div class="page-subtitle">--}}
             {{--ここにサブタイトルが入る--}}
             {{--</div>--}}
         </div>
         <hr />
-        {{--<ol class="breadcrumb page-breadcrumb">--}}
-        {{--<li>--}}
-        {{--<i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>--}}
-        {{--<li><a href="#">ここにタイトルが入る</a>&nbsp;&nbsp;--}}
-        {{--</ol>--}}
+        <ol class="breadcrumb page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>&nbsp;
+                <a href="/home">Home</a>&nbsp;&nbsp;
+                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                <a href="#">選択科目一覧</a>&nbsp;&nbsp;
+            </li>
+        </ol>
         <div class="clearfix">
         </div>
     </div>
@@ -39,18 +42,19 @@
 
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="panel">
-                            <div class="panel-body"><h4>選択科目 一覧</h4>
-                                <table border="1">
+                        <div class="panel panel-orange">
+                            <div class="panel-heading">選択科目一覧</div>
+                            <div class="panel-body">
+                                <table border="0">
                                     <tr>
-                                        <th class="text-center">科目名</th>
-                                        <th class="text-center">操作</th>
+                                        <th class="text-center alert alert-success">科目名</th>
+                                        <th class="text-center alert alert-success">操作</th>
                                     </tr>
                                     @foreach($subName as $value)
-                                        <tr><td class="text-center">{{$value->subject}}</td>
-                                            <td>
-                                                <a href="/admin/elective/studentList/{{$value->id}}"><input type="button" value="認証待ち"></a>
-                                                <a href="/admin/elective/authorized/{{$value->id}}"><input type="button" value="認証済み"></a>
+                                        <tr><td class="text-center alert alert-warning">{{$value->subject}}</td>
+                                            <td class="alert alert-warning">
+                                                <a href="/admin/elective/studentList/{{$value->id}}"><input type="button" class="btn btn-orange" value="認証待ち"></a>
+                                                <a href="/admin/elective/authorized/{{$value->id}}"><input type="button" class="btn btn-orange" value="認証済み"></a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -13,8 +13,11 @@
         <hr />
         <ol class="breadcrumb page-breadcrumb">
             <li>
-                <i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li><a href="#">選択科目 一覧</a>&nbsp;&nbsp;
+                <i class="fa fa-home"></i>&nbsp;
+                <a href="index.html">Home</a>&nbsp;&nbsp;
+                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                <a href="#">選択科目 一覧</a>&nbsp;&nbsp;
+            </li>
         </ol>
         <div class="clearfix">
         </div>
@@ -38,25 +41,24 @@
 
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="panel">
-                            <div class="panel-body"><h4>選択科目 一覧</h4>
-
-                                    <table border="1">
-                                        <tr><th class="text-center">科目名</th>
-                                            <th class="text-center">操作</th>
+                        <div class="panel panel-orange">
+                            <div class="panel-heading">選択科目 一覧</div>
+                                <div class="panel-body">
+                                    <table border="0">
+                                        <tr><th class="text-center alert alert-success">科目名</th>
+                                            <th class="text-center alert alert-success" >操作</th>
                                         </tr>
 
                                         @foreach($subName as $value)
-                                                <tr><td class="text-center">{{$value->subject}}</td>
-                                                    <td>
-                                                        <a href="/user/elective/confirm/{{$value->id}}"><input type="button" value="申請"></a>
+                                                <tr><td class="text-center alert alert-warning">{{$value->subject}}</td>
+                                                    <td class="alert alert-warning">
+                                                        <a href="/user/elective/confirm/{{$value->id}}"><input type="button" class="btn btn-orange" value="申請"></a>
                                                     </td>
                                                 </tr>
 
                                         @endforeach
                                     </table>
-
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -38,13 +38,10 @@
 
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="panel">
+                        <div class="panel panel-orange">
+                            <div class="panel-heading">{{$title}}</div>
                             <div class="panel-body">
-                                <h4>{{$title}}</h4>
-
                                 <h4>{{$msg}}</h4>
-                                <a href='/admin/elective/'><input type="button" value="戻る"></a>
-
                             </div>
                         </div>
                     </div>

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use App\subject_table;
 use App\elective_table;
 use App\users_table;
+use App\class_table;
 use Auth;
 use Request;
 
@@ -115,7 +116,7 @@ class ElectiveController extends Controller
 
         //elective_table が空のとき
         if($elective_table->isEmpty()){
-            return view('user/elective-emp')->with('msg',"現在 申請している科目はありません")->with('title',"選択科目一覧");
+            return view('user/elective-emp')->with('msg',"申請している科目はありません")->with('title',"選択科目一覧");
         }
         
         //科目テーブル読み込み (選択科目のみ)
@@ -159,7 +160,7 @@ class ElectiveController extends Controller
 
         //elective_table が空のとき
         if($elective_table->isEmpty()){
-            return view('admin/elective-emp')->with('msg',"現在 申請している生徒はいません")->with('title',"選択科目一覧");
+            return view('admin/elective-emp')->with('msg',"申請している生徒はいません")->with('title',"選択科目一覧");
         }
 
         //科目テーブル読み込み 選択科目フラグが true
@@ -194,7 +195,7 @@ class ElectiveController extends Controller
 
         //elective_table が空のとき
         if($elective_table->isEmpty()){
-            return view('admin/elective-emp')->with('msg',"現在 申請している生徒はいません")->with('title',"認証待ち生徒 一覧");
+            return view('admin/elective-emp')->with('msg',"申請している生徒はいません")->with('title',"認証待ち生徒一覧");
         }
 
         //科目名取得
@@ -211,15 +212,19 @@ class ElectiveController extends Controller
         }
         $cnt = 1;
         $order = array();
+
+        $array = array();
         foreach ($temporary as $st){
             foreach ($st as $stval){
                 $student[$stval->id] = $stval;
+                $array[$stval->id] = class_table::where('id','=',$stval->class)->first();
+                
                 $order[$stval->id] = $cnt++;
             }
         }
 
         //申請待ち生徒一覧view
-        return view('admin/elective-student')->with("student",$student)->with("subject",$subName)->with("order",$order);
+        return view('admin/elective-student')->with("student",$student)->with("subject",$subName)->with("order",$order)->with('class',$array);
     }
 
     //認証確認 生徒一覧<admin>
@@ -255,7 +260,7 @@ class ElectiveController extends Controller
         }
         //チェックされていないとき
         if(empty($result)){
-            return view('admin/elective-emp')->with('msg',"選択している生徒がいません")->with('title',"申請許可 生徒一覧");
+            return view('admin/elective-emp')->with('msg',"選択している生徒がいません")->with('title',"申請許可生徒一覧");
         }
 
         //結果表示view
@@ -303,7 +308,7 @@ class ElectiveController extends Controller
 
         //elective_table が空のとき
         if($elective_table->isEmpty()){
-            return view('admin/elective-emp')->with('msg',"現在 認証している生徒はいません")->with('title',"認証済み生徒 一覧");
+            return view('admin/elective-emp')->with('msg',"認証している生徒はいません")->with('title',"認証済み生徒一覧");
         }
 
         //科目名取得
@@ -319,14 +324,17 @@ class ElectiveController extends Controller
             $temporary[$value->id] = users_table::where('id','=',$value->user_Id)->get();
         }
 
+        //クラスIDからクラス名を取得->$array
+        $array = array();
         foreach ($temporary as $st){
             foreach ($st as $stval){
                 $student[$stval->id] = $stval;
+                $array[$stval->id] = class_table::where('id','=',$stval->class)->first();
             }
         }
 
         //申請待ち生徒一覧view
-        return view('admin/elective-authorized')->with("student",$student)->with("subject",$subName);
+        return view('admin/elective-authorized')->with("student",$student)->with("subject",$subName)->with("class",$array);
     }
 
     //認証取消 確認
@@ -353,18 +361,23 @@ class ElectiveController extends Controller
         }
         $cnt = 0;
 
+        $array = array();
         //チェックボックスがオンのとき、result() にid,name,classの値を保存
         foreach ($check as $value){
             if($value == "on"){
                 $result[$cnt]["id"] = $id[$cnt];
                 $result[$cnt]["name"] = $name[$cnt];
                 $result[$cnt]["class"] = $class[$cnt];
+
+                //クラスIDからクラス名を取得->$array
+                $array[$id[$cnt]] = class_table::where('id','=',$class[$cnt])->first();
+
                 $cnt+=1;
             }
         }
 
         //結果表示view
-        return view('admin/elective-delete')->with("result",$result)->with("subject",$subject)->with("subId",$subId);
+        return view('admin/elective-delete')->with("result",$result)->with("subject",$subject)->with("subId",$subId)->with('class',$array);
     }
 
     //認証取消
