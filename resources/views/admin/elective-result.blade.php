@@ -1,7 +1,7 @@
 @extends('admin.elements.basic')
 
 @section('title')
-    申請許可生徒一覧
+    認証確認画面
 @endsection
 
 @section('content-header')
@@ -9,21 +9,16 @@
         <div class="page-header">
             <div class="page-title mrm">
                 申請許可生徒一覧</div>
-            {{--<div class="page-subtitle">--}}
-            {{--ここにサブタイトルが入る--}}
-            {{--</div>--}}
         </div>
         <hr />
         <ol class="breadcrumb page-breadcrumb">
             <li>
                 <i class="fa fa-home"></i>&nbsp;
-                <a href="/home">Home</a>&nbsp;&nbsp;
-                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
                 <a href="/admin/elective">選択科目一覧</a>&nbsp;&nbsp;
                 <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
                 <a href="/admin/elective/studentList/{{$subId}}">認証待ち生徒一覧</a>&nbsp;&nbsp;
                 <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
-                <a href="#">申請許可生徒一覧</a>&nbsp;&nbsp;
+                <a href="#">認証確認画面</a>&nbsp;&nbsp;
             </li>
         </ol>
         <div class="clearfix">
