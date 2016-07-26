@@ -13,8 +13,13 @@
         <hr />
         <ol class="breadcrumb page-breadcrumb">
             <li>
-                <i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li><a href="#">送信内容 確認</a>&nbsp;&nbsp;
+                <i class="fa fa-home"></i>&nbsp;
+                <a href="index.html">Home</a>&nbsp;&nbsp;
+                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                <a href="/user/elective">選択科目 一覧</a>&nbsp;&nbsp;
+                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                <a href="#">送信内容 確認</a>&nbsp;&nbsp;
+            <li>
         </ol>
         <div class="clearfix">
         </div>
@@ -38,25 +43,26 @@
 
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="panel">
-                            <div class="panel-body"><h4>送信内容 確認</h4>
+                        <div class="panel panel-orange">
+                            <div class="panel-heading">送信内容 確認</div>
+                                <div class="panel-body">
 
-                                    <table border="1">
+                                    <table border="0">
                                         <tr>
-                                            <th class="text-center">科目名</th>
-                                            <th class="text-center">操作</th>
+                                            <th class="text-center alert alert-success">科目名</th>
+                                            <th class="text-center alert alert-success">操作</th>
                                         </tr>
-                                        <tr><td class="text-center">{{$subject->subject}}</td>
+                                        <tr><td class="text-center alert alert-warning">{{$subject->subject}}</td>
 
-                                            <td>
-                                                <a href="/user/elective/insert/{{$subject->id}}"><input type="button" class="elective" value="申請"></a>
-                                                <a href="/user/elective/"><input type="button" value="訂正"></a>
+                                            <td class="alert alert-warning">
+                                                <a href="/user/elective/insert/{{$subject->id}}"><input type="button" class="elective btn btn-orange" value="申請"></a>
+                                                <a href="/user/elective/"><input type="button" class="btn btn-orange" value="訂正"></a>
                                             </td>
                                             {{--<td><input type="submit" value="申請"><input type="submit" value="訂正"></td>--}}
 
                                         </tr>
                                     </table>
-
+                                </div>
                             </div>
                         </div>
                     </div>

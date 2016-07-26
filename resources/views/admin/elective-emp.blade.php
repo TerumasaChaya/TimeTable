@@ -14,11 +14,16 @@
             {{--</div>--}}
         </div>
         <hr />
-        {{--<ol class="breadcrumb page-breadcrumb">--}}
-        {{--<li>--}}
-        {{--<i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>--}}
-        {{--<li><a href="#">ここにタイトルが入る</a>&nbsp;&nbsp;--}}
-        {{--</ol>--}}
+        <ol class="breadcrumb page-breadcrumb">
+            <li>
+                <i class="fa fa-home"></i>&nbsp;
+                <a href="/home">Home</a>&nbsp;&nbsp;
+                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                <a href="/admin/elective">選択科目一覧</a>&nbsp;&nbsp;
+                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                <a href="#">{{$title}}</a>&nbsp;&nbsp;
+            </li>
+        </ol>
         <div class="clearfix">
         </div>
     </div>
@@ -38,13 +43,10 @@
 
                 <div class="col-lg-12">
                     <div class="row">
-                        <div class="panel">
+                        <div class="panel panel-orange">
+                            <div class="panel-heading">{{$title}}</div>
                             <div class="panel-body">
-                                <h4>{{$title}}</h4>
-
                                 <h4>{{$msg}}</h4>
-                                <a href='/admin/elective/'><input type="button" value="戻る"></a>
-
                             </div>
                         </div>
                     </div>

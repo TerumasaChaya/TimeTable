@@ -20,9 +20,13 @@
         <hr/>
         <ol class="breadcrumb page-breadcrumb">
             <li>
-                <i class="fa fa-home"></i>&nbsp;<a href="index.html">Home</a>&nbsp;&nbsp;<i
-                        class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li><a href="#">教師編集</a>&nbsp;&nbsp;
+                <i class="fa fa-home"></i>&nbsp;
+                <a href="index.html">Home</a>&nbsp;&nbsp;
+                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                <a href="/admin/teacher">教師一覧</a>&nbsp;&nbsp;
+                <i class="fa fa-angle-right"></i>&nbsp;&nbsp;
+                <a href="#">教師編集</a>&nbsp;&nbsp;
+            </li>
         </ol>
         <div class="clearfix">
         </div>
