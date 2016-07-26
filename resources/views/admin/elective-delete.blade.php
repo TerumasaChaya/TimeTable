@@ -60,13 +60,11 @@
 
                                     <table border="1">
                                         <tr>
-                                            <th class="text-center alert alert-success">ユーザーID</th>
                                             <th class="text-center alert alert-success">ユーザー名</th>
                                             <th class="text-center alert alert-success">クラス</th>
                                         </tr>
                                         @foreach($result as $value)
                                             <tr>
-                                                <td class="text-center alert alert-warning">{{$value["id"]}}</td>
                                                 <input type="hidden" name="id[]" value="{{$value["id"]}}">
 
                                                 <td class="text-center alert alert-warning">{{$value["name"]}}</td>

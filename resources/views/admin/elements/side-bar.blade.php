@@ -4,7 +4,7 @@
          data-position="right" class="navbar-default navbar-static-side">
         <div class="sidebar-collapse menu-scroll">
             <ul id="side-menu" class="nav">
-                
+
                 <div class="clearfix"></div>
 
                 <li>
