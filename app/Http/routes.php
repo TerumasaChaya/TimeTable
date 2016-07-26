@@ -107,7 +107,7 @@ Route::group(['middleware' => 'auth:admin'], function () { //←このグルー�
 
     Route::get('/admin/logout','AdminAuthController@logout');
 
-        Route::group(['prefix' => 'admin/teacher'], function(){
+        Route::group(['prefix' => 'teacher'], function(){
             Route::get('/', 'adminTeacherController@index');
             Route::get('/edit/{id}', 'adminTeacherController@edit');
             Route::post('/upImg', 'adminTeacherController@setTeacherImage');
