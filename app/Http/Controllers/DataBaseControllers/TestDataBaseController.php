@@ -44,6 +44,9 @@ class TestDataBaseController extends Controller{
         $period = array('period','subject', 'class', 'teacher');
 
 
+        $maxPeriod = 0;
+
+
 
 
         foreach ($class_cd as $classDay) {
@@ -52,6 +55,9 @@ class TestDataBaseController extends Controller{
             $teacherName = $classDay->mainTeacher;
             //$teacherName = $classDay->subject->repTeacher->first()->Teacher->TeacherName;
 
+            if ($classDay->period > $maxPeriod){
+                $maxPeriod = $classDay->period;
+            }
 
             if($classDay->day == "月"){
 
@@ -90,6 +96,10 @@ class TestDataBaseController extends Controller{
             $roomName = $classD->room;
             $teacherName = $classD->mainTeacher;
 
+            if ($classD->period > $maxPeriod){
+                $maxPeriod = $classD->period;
+            }
+
             if($classD->day == "月"){
 
                 $a = array($classD->period -1  => array_combine($day, array($classD->period, $subjectName ,$roomName,$teacherName)));
@@ -119,13 +129,17 @@ class TestDataBaseController extends Controller{
 
             }
         }
+        array_push($weekDay,$mon,$tue,$wed,$thu,$fri);
+
+        //var_dump($weekDay);
 
 
-            //echo ($classD->day);
+
+         
 
 
 
-        //array_push($weekDay,$mon,$tue,$wed,$thu,$fri);
+      
 
 
 
@@ -139,8 +153,19 @@ class TestDataBaseController extends Controller{
 
         }
 
-        return view('user.week',['weekperiod'=>$weekPeriod]);
 
+
+        if ($maxPeriod == 4) {
+            return view('user.week', ['weekperiod' => $weekPeriod, 'maxperiod' => 8]);
+        }else{
+            return view('user.week', ['weekperiod' => $weekPeriod, 'maxperiod' => 10]);
+        }
+
+
+
+    }
+    function sortDay(){
+        
     }
 
 
