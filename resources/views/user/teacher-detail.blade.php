@@ -59,8 +59,17 @@
                                 <label>コメント</label><br>
                                 <!-- コメント -->
                                 <textarea name="comment" autofocus="autofocus" rows="10" cols="50" readonly>{{$teacher->comment}}</textarea><br>
+                                <!-- 現在地 -->
+                                @if {{$now}}
+                                    <div class="text-green">現在教室：<b>{{$now->room->roomName}}</b></div>
+                                    <div class="text-orange">現在授業：<b>del_フリースタイルコンペティション(Web)演習</b></div>
+                                @elseif
+                                    <div class="text-green">現在教室：<b>{{$now->room->roomName}}</b></div>
+                                    <div class="text-orange">現在授業：<b>del_フリースタイルコンペティション(Web)演習</b></div>
+                                @endif
                                 <!-- 戻るボタン -->
-                                <a href="/user/teacher"><input type="button" class="btn btn-xs btn-blue"
+                                </br>
+                                <a href="/user/teacher"><input type="button" class="btn btn-sm btn-blue"
                                                                 value="戻る"></a>
                             </div>
                         </table>

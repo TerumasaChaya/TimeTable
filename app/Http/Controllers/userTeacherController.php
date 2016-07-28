@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Excel;
 use \File;
+use Carbon\Carbon;
 use App\account_table;
 use App\college_table;
 use App\class_table;
@@ -93,9 +94,50 @@ class userTeacherController extends Controller
         //教師データ取得
         $teacher = $teacher_table::where("id", "=", $id)->first();
 
-        return view('user/teacher-detail')->with("teacher",$teacher);
+        //曜日、時限取得
+        //現在時刻の取得
+        $date = new Carbon(Carbon::now());
+
+        //曜日配列の生成
+        $week = array('日', '月', '火', '水', '木', '金', '土');
+
+        //現在の曜日取得
+        $w = $week[$date->dayOfWeek];
+
+        //時限用変数
+        $period = 0;
+
+        //時限判定
+        if(($date->hour >= 9 && $date->minute >= 15) && ($date->hour <= 10 && $date->minute <= 45)){
+            $period = 1;
+        }elseif(($date->hour >= 11 && $date->minute >= 0) && ($date->hour <= 12 && $date->minute <= 30)) {
+            $period = 2;
+        }elseif(($date->hour >= 13 && $date->minute >= 30) && ($date->hour <= 15 && $date->minute <= 0)) {
+            $period = 3;
+        }elseif(($date->hour >= 15 && $date->minute >= 15) && ($date->hour <= 16 && $date->minute <= 45)){
+            $period = 4;
+        }elseif(($date->hour >= 17 && $date->minute >= 0) && ($date->hour <= 18 && $date->minute <= 30)) {
+            $period = 5;
+        }
+
+        //教室名
+        $classDay_table = new classDay_table();
+        $now = $classDay_table::where("day", "=", $w)
+            ->where("period", "=", $period)
+            ->where("subrep_m", "=", $id)
+            ->first();
+
+        if($week == null){
+            $classDay_table = new classDay_table();
+            $now = $classDay_table::where("day", "=", $w)
+                ->where("period", "=", $period)
+                ->where("subrep_t", "=", $id)->first();
+        }
+
+        var_dump($now->subject->subject);
+
+        return view('user/teacher-detail')->with("teacher",$teacher)->with("now",$now);
     }
     
-
 }
 
