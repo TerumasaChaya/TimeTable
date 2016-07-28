@@ -71,7 +71,7 @@
 
                     <div class="rememberpass" style="padding-left:280px;">
                         <input type="checkbox" name="rememberusername" id="rememberusername" value="1" checked="checked" />
-                        <label for="rememberusername">ユーザ名を記憶する</label>
+                        <label for="rememberusername">メールアドレスを記憶する</label>
                     </div>
                     <div class="form-group mbn">
                         <div class="col-lg-12" align="right">
