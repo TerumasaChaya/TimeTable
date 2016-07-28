@@ -48,15 +48,25 @@
                                     <table border="0">
                                         <tr>
                                             <th class="text-center alert alert-success">科目名</th>
+                                            <th class="text-center alert alert-success">教師名</th>
+                                            <th class="text-center alert alert-success">曜日</th>
+                                            <th class="text-center alert alert-success">単位数</th>
                                             <th class="text-center alert alert-success">操作</th>
                                         </tr>
-                                        <tr><td class="text-center alert alert-warning">{{$subject->subject}}</td>
-
-                                            <td class="alert alert-warning">
-                                                <a href="/user/elective/insert/{{$subject->id}}"><input type="button" class="elective btn btn-orange" value="申請"></a>
-                                                <a href="/user/elective/"><input type="button" class="btn btn-orange" value="訂正"></a>
+                                        <tr>
+                                            <td class="text-center alert alert-warning">{{$subject->subject}}</td>
+                                            <td class="text-center alert alert-warning">{{$name}}</td>
+                                            <td class="text-center alert alert-warning">
+                                                @foreach($day as $value)
+                                                    {{$value}}
+                                                @endforeach
                                             </td>
-                                            {{--<td><input type="submit" value="申請"><input type="submit" value="訂正"></td>--}}
+                                            <td class="text-center alert alert-warning">{{$subject->credits}}</td>
+                                                <td class="alert alert-warning">
+                                                    <a href="/user/elective/insert/{{$subject->id}}"><input type="button" class="elective btn btn-orange" value="申請"></a>
+                                                    <a href="/user/elective/"><input type="button" class="btn btn-orange" value="訂正"></a>
+                                                </td>
+                                                {{--<td><input type="submit" value="申請"><input type="submit" value="訂正"></td>--}}
 
                                         </tr>
                                     </table>

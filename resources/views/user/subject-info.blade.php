@@ -71,6 +71,18 @@
                                                 </td>
                                             </tr>
                                         @endif
+                                        <tr>
+                                            <td width="100" align="center">種別</td>
+                                            <td>{{$day->subject->part}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100" align="center">使用ハード</td>
+                                            <td>{{$day->subject->useHard}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100" align="center">単位数</td>
+                                            <td>{{$day->subject->credits}}</td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>

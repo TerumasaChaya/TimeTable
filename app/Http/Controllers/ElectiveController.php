@@ -8,6 +8,7 @@ use App\subject_table;
 use App\elective_table;
 use App\users_table;
 use App\class_table;
+use App\classDay_table;
 use Auth;
 use Request;
 
@@ -49,6 +50,23 @@ class ElectiveController extends Controller
     //申請確認画面 <user>
     public function appConfirm($id){
         //引数 (科目ID)
+        $subject = subject_table::where('id','=',$id)->first();
+        $subject_cd = $subject->classDay;
+
+        //曜日格納
+        $day = array();
+
+        foreach ($subject_cd as $scd){
+            $day[$scd->id] = $scd->day.$scd->period;
+        }
+        //重複を削除し、配列のキーの整頓
+        $unique = array_unique($day);
+        $day = array_values($unique);
+
+        foreach ($subject_cd as $value){
+            //教師名格納
+            $name = $value->mainTeacher->TeacherName;
+        }
 
         //テーブルオブジェクト作成
         $subject_table = new subject_table();
@@ -56,7 +74,7 @@ class ElectiveController extends Controller
         //科目データ取得
         $subject = $subject_table::where("id", "=", $id)->first();
 
-        return view('user/confirm-elective')->with("subject",$subject);
+        return view('user/confirm-elective')->with("subject",$subject)->with('day',$day)->with('name',$name);
     }
 
     //データベース登録 <user>
@@ -337,7 +355,7 @@ class ElectiveController extends Controller
         return view('admin/elective-authorized')->with("student",$student)->with("subject",$subName)->with("class",$array);
     }
 
-    //認証取消 確認
+    //認証取消 確認<admin>
     public function delConfirm(){
         //認証取消した 生徒一覧
         $result = array();
@@ -380,7 +398,7 @@ class ElectiveController extends Controller
         return view('admin/elective-delete')->with("result",$result)->with("subject",$subject)->with("subId",$subId)->with('class',$array);
     }
 
-    //認証取消
+    //認証取消<admin>
     public function delete(){
 
         //送られてきた値を取得
