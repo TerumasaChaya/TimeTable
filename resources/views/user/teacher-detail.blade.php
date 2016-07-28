@@ -60,12 +60,23 @@
                                 <!-- コメント -->
                                 <textarea name="comment" autofocus="autofocus" rows="10" cols="50" readonly>{{$teacher->comment}}</textarea><br>
                                 <!-- 現在地 -->
-                                @if {{$now}}
-                                    <div class="text-green">現在教室：<b>{{$now->room->roomName}}</b></div>
-                                    <div class="text-orange">現在授業：<b>del_フリースタイルコンペティション(Web)演習</b></div>
-                                @elseif
-                                    <div class="text-green">現在教室：<b>{{$now->room->roomName}}</b></div>
-                                    <div class="text-orange">現在授業：<b>del_フリースタイルコンペティション(Web)演習</b></div>
+                                @if($now != null)
+                                    <div class="text-green">現在教室：
+                                        <b>
+                                            <a Href="/user/roominfo/{{$now->room->id}}">
+                                            {{$now->room->roomName}}
+                                            </a>
+                                        </b>
+                                    </div>
+                                    <div class="text-orange">現在授業：
+                                        <b>
+                                            <a href="/user/subjectinfo/{{$now->id}}">
+                                            {{$now->subject->subject}}
+                                            </a>
+                                        </b>
+                                    </div>
+                                @else
+                                    <div class="text-green"><b>{{$teacher->TeacherName}}先生は現在授業を担当しておりません。</b></div>
                                 @endif
                                 <!-- 戻るボタン -->
                                 </br>

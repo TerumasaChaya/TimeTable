@@ -134,8 +134,6 @@ class userTeacherController extends Controller
                 ->where("subrep_t", "=", $id)->first();
         }
 
-        var_dump($now->subject->subject);
-
         return view('user/teacher-detail')->with("teacher",$teacher)->with("now",$now);
     }
     
