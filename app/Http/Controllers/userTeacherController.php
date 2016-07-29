@@ -105,7 +105,7 @@ class userTeacherController extends Controller
         $w = $week[$date->dayOfWeek];
 
         //時限用変数
-        $period = 0;
+        $period = -1;
 
         //時限判定
         if(($date->hour >= 9 && $date->minute >= 15) && ($date->hour <= 10 && $date->minute <= 45)){
@@ -118,6 +118,8 @@ class userTeacherController extends Controller
             $period = 4;
         }elseif(($date->hour >= 17 && $date->minute >= 0) && ($date->hour <= 18 && $date->minute <= 30)) {
             $period = 5;
+        }elseif(($date->hour >= 7 && $date->minute >= 30) && ($date->hour <=9  && $date->minute <= 0)) {
+            $period = 0;
         }
 
         //教室名
