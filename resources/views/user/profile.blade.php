@@ -81,7 +81,7 @@
                                             <div class="col-md-6">
 
                                                 <select name="class">
-                                                    @foreach(\App\class_table::all() as $class )
+                                                    @foreach(\App\class_table::orderBy('className')->get() as $class )
                                                         
                                                         @if($class->id == old('class',  Auth::user()->class ) )
                                                             <option value="{{$class->id}}" selected="selected">{{$class->className}}</option>

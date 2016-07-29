@@ -107,7 +107,7 @@
                         <div class="col-md-6">
                             <!--<input id="class" type="text" class="form-control" name="class" value="{{ old('class') }}"> -->
                             <select name="class">
-                                @foreach(\App\class_table::all() as $class )
+                                @foreach(\App\class_table::orderBy('className')->get() as $class )
                                     <option value="{{$class->id}}">{{$class->className}}</option>
                                 @endforeach
                             </select>

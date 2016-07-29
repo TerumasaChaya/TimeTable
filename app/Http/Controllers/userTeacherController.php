@@ -127,7 +127,7 @@ class userTeacherController extends Controller
             ->where("subrep_m", "=", $id)
             ->first();
 
-        if($week == null){
+        if($now == null){
             $classDay_table = new classDay_table();
             $now = $classDay_table::where("day", "=", $w)
                 ->where("period", "=", $period)

@@ -82,7 +82,7 @@
                         <!-- ゲーム -->
                         <div class="col-lg-2">
                             <div class="panel panel-green">
-                                <div class="panel-heading">デザイン</div>
+                                <div class="panel-heading">ゲーム</div>
                                 <div class="panel-body">
                                     <table class="table table-hover table-bordered">
                                         <thead>
