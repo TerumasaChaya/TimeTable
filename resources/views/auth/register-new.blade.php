@@ -56,9 +56,9 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="email" class="col-md-3 control-label">
+                        <label for="email" class="col-md-4 control-label">
                             メールアドレス:</label>
-                        <div class="col-md-9">
+                        <div class="col-md-6">
                                 <input id="email" type="email" placeholder="" class="form-control" name="email" value="{{ old('email') }}"/>
                             @if ($errors->has('email'))
                                 <span class="help-block">
@@ -67,7 +67,6 @@
                             @endif
                         </div>
                     </div>
-
 
 
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
