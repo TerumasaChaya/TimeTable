@@ -107,7 +107,7 @@
 
                                                         @if(isset($weekperiod[$b]['teacher']['TeacherName']))
                                                                 <td class="col-xs-1">
-                                                                    <a href="teacher/detail/{{$weekperiod[$b]['teacher']['id']}}">
+                                                                    <a href="/user/teacher/detail/{{$weekperiod[$b]['teacher']['id']}}">
                                                                         {{$weekperiod[$b]['teacher']['TeacherName']}}
                                                                     </a>
                                                                 </td>
