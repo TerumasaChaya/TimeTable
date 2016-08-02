@@ -70,7 +70,7 @@
 
 
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label for="password" class="col-md-4 control-label">パスワード：</label>
+                        <label for="password" class="col-md-4 control-label">パスワード(6文字以上)：</label>
 
                         <div class="col-md-6">
                             <div class="input-icon right">

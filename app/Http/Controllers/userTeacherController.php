@@ -108,17 +108,29 @@ class userTeacherController extends Controller
         $period = -1;
 
         //時限判定
-        if(($date->hour >= 9 && $date->minute >= 15) && ($date->hour <= 10 && $date->minute <= 45)){
+        if($date->hour == 9 &&  $date->minute >= 15){
             $period = 1;
-        }elseif(($date->hour >= 11 && $date->minute >= 0) && ($date->hour <= 12 && $date->minute <= 30)) {
+        }elseif($date->hour == 10 && $date->minute <= 45){
+            $period = 1;
+        }elseif($date->hour == 11) {
             $period = 2;
-        }elseif(($date->hour >= 13 && $date->minute >= 30) && ($date->hour <= 15 && $date->minute <= 0)) {
+        }elseif($date->hour == 12 && $date->minute <= 30) {
+            $period = 2;
+        }elseif($date->hour == 13 && $date->minute >= 30){
             $period = 3;
-        }elseif(($date->hour >= 15 && $date->minute >= 15) && ($date->hour <= 16 && $date->minute <= 45)){
+        }elseif($date->hour == 14){
+            $period = 3;
+        }elseif($date->hour == 15 && $date->minute >= 15) {
             $period = 4;
-        }elseif(($date->hour >= 17 && $date->minute >= 0) && ($date->hour <= 18 && $date->minute <= 30)) {
+        }elseif($date->hour == 16 && $date->minute <= 45){
+            $period = 4;
+        }elseif($date->hour == 17) {
             $period = 5;
-        }elseif(($date->hour >= 7 && $date->minute >= 30) && ($date->hour <=9  && $date->minute <= 0)) {
+        }elseif($date->hour == 18 && $date->minute <= 30){
+            $period = 5;
+        }elseif($date->hour == 7 && $date->minute >= 30) {
+            $period = 0;
+        }elseif($date->hour == 8){
             $period = 0;
         }
 
